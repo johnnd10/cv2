@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="Claudia
+Villegas">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#f7f1e6"/>
+      <stop offset="1" stop-color="#071426" stop-opacity="0.75"/>
+    </linearGradient>
+    <radialGradient id="r" cx="70%" cy="25%" r="55%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#g)"/>
+  <rect width="1200" height="900" fill="url(#r)"/>
+  <circle cx="930" cy="150" r="170" fill="#fff" opacity="0.08"/>
+  <circle cx="230" cy="740" r="220" fill="#000" opacity="0.12"/>
+  <path d="M120 650 C260 480 400 610 540 450 C700 270 850 390 1080 210" fill="none" stroke="#ffffff" stroke-opacity="0.22" stroke-width="5"/>
+  <text x="90" y="760" font-family="Georgia, serif" font-size="84" fill="#ffffff" opacity="0.92">Claudia
+Villegas</text>
+  <text x="94" y="820" font-family="Arial, sans-serif" font-size="24" fill="#ffffff" opacity="0.72" letter-spacing="8">REEMPLAZAR CON FOTO REAL</text>
+</svg>
