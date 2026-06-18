@@ -752,6 +752,13 @@ textarea {
   resize: vertical;
 }
 
+.form-note {
+  margin: 0;
+  color: #4c5a6e;
+  font-size: .92rem;
+  line-height: 1.5;
+}
+
 .contact-form .button {
   width: 100%;
   margin-top: 4px;
@@ -917,16 +924,14 @@ textarea {
   .coverflow-slide.is-left {
     transform:
       translate(calc(-50% - 58vw), -50%)
-      rotateY(34deg)
-      translateZ(-120px)
+      rotateY(22deg)
       scale(.7);
   }
 
   .coverflow-slide.is-right {
     transform:
       translate(calc(-50% + 58vw), -50%)
-      rotateY(-34deg)
-      translateZ(-120px)
+      rotateY(-22deg)
       scale(.7);
   }
 
@@ -977,8 +982,7 @@ textarea {
   .coverflow-slide.is-far-left {
     transform:
       translate(calc(-50% - 72vw), -50%)
-      rotateY(36deg)
-      translateZ(-130px)
+      rotateY(24deg)
       scale(.65);
   }
 
@@ -986,8 +990,7 @@ textarea {
   .coverflow-slide.is-far-right {
     transform:
       translate(calc(-50% + 72vw), -50%)
-      rotateY(-36deg)
-      translateZ(-130px)
+      rotateY(-24deg)
       scale(.65);
   }
 
