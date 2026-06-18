@@ -252,4 +252,31 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCoverflow();
     startAutoplay();
   }
+
+  const whatsappForm = document.getElementById("whatsapp-form");
+
+  if (whatsappForm) {
+    whatsappForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(whatsappForm);
+
+      const nombre = formData.get("nombre")?.trim();
+      const correo = formData.get("correo")?.trim();
+      const servicio = formData.get("servicio")?.trim();
+      const mensaje = formData.get("mensaje")?.trim();
+
+      const whatsappMessage = `Hola Claudia, me gustaría solicitar información para una sesión/cobertura.
+
+Nombre: ${nombre}
+Correo: ${correo}
+Tipo de evento: ${servicio}
+Mensaje: ${mensaje}`;
+
+      const phoneNumber = "524775811873";
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+      window.open(whatsappUrl, "_blank");
+    });
+  }
 });

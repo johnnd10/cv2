@@ -185,7 +185,7 @@
           </div>
         </div>
 
-        <form class="contact-form reveal delay-1" action="https://formspree.io/f/your-form-id" method="POST">
+        <form class="contact-form reveal delay-1" id="whatsapp-form">
           <label>
             Nombre
             <input type="text" name="nombre" placeholder="Tu nombre" required />
@@ -215,7 +215,9 @@
             <textarea name="mensaje" rows="4" placeholder="Cuéntame qué necesitas" required></textarea>
           </label>
 
-          <button class="button primary" type="submit">Enviar solicitud</button>
+          <p class="form-note">Al enviar, se abrirá WhatsApp con tu mensaje listo para mandar.</p>
+
+          <button class="button primary" type="submit">Enviar por WhatsApp</button>
         </form>
       </div>
     </section>
