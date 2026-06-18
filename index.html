@@ -12,10 +12,9 @@
 
   <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
   <header class="site-header" id="top">
-    <a class="brand" href="#top" aria-label="Claudia Villegas inicio">
+    <a class="brand" href="#inicio" aria-label="Claudia Villegas inicio">
       <span>Claudia</span>
       <strong>Villegas</strong>
     </a>
@@ -74,7 +73,7 @@
             <source src="assets/videos/drone-preview.mp4" type="video/mp4">
             Tu navegador no puede cargar este video.
           </video>
-          <span class="hero-video-label">Drone & Video</span>
+          <span class="hero-video-label">Drone & video</span>
         </div>
       </div>
     </section>
@@ -87,23 +86,23 @@
       </div>
 
       <div class="service-grid reveal delay-1">
-        <a class="service-card" href="#reservar">
+        <article class="service-card">
           <span>01</span>
           <h3>Fotografía</h3>
           <p>Sesiones y cobertura profesional para bodas, XV años, bautizos, newborn, retratos familiares y celebraciones especiales.</p>
-        </a>
+        </article>
 
-        <a class="service-card" href="#reservar">
+        <article class="service-card">
           <span>02</span>
           <h3>Video</h3>
           <p>Cobertura en movimiento para conservar ambiente, emociones, detalles y momentos clave del evento.</p>
-        </a>
+        </article>
 
-        <a class="service-card accent" href="#drone-video">
+        <article class="service-card accent">
           <span>03</span>
           <h3>Drone</h3>
           <p>Tomas aéreas para mostrar locaciones, entradas, espacios y una vista cinematográfica del evento.</p>
-        </a>
+        </article>
       </div>
     </section>
 
@@ -111,34 +110,35 @@
       <div class="section-heading centered reveal">
         <p class="eyebrow">Portafolio</p>
         <h2>Momentos capturados</h2>
-        <p>Explora una muestra del trabajo de Claudia en distintos tipos de sesión.</p>
       </div>
 
-      <div class="portfolio-coverflow reveal delay-1" aria-label="Carrusel automático del portafolio">
-        <article class="coverflow-card">
-          <img src="assets/images/bodas.jpg" alt="Ejemplo visual de bodas" />
-          <span>Bodas</span>
-        </article>
+      <div class="portfolio-coverflow reveal delay-1" aria-label="Galería de portafolio">
+        <div class="coverflow-stage" tabindex="0">
+          <article class="coverflow-slide is-center">
+            <img src="assets/images/bodas.jpg" alt="Ejemplo visual de bodas" />
+            <span>Bodas</span>
+          </article>
 
-        <article class="coverflow-card">
-          <img src="assets/images/xv-anos.jpg" alt="Ejemplo visual de XV años" />
-          <span>XV años</span>
-        </article>
+          <article class="coverflow-slide is-right">
+            <img src="assets/images/xv-anos.jpg" alt="Ejemplo visual de XV años" />
+            <span>XV años</span>
+          </article>
 
-        <article class="coverflow-card">
-          <img src="assets/images/tres-anos.jpg" alt="Ejemplo visual de 3 años" />
-          <span>3 años</span>
-        </article>
+          <article class="coverflow-slide is-far-right">
+            <img src="assets/images/tres-anos.jpg" alt="Ejemplo visual de 3 años" />
+            <span>3 años</span>
+          </article>
 
-        <article class="coverflow-card">
-          <img src="assets/images/bautizo.jpg" alt="Ejemplo visual de bautizo" />
-          <span>Bautizo</span>
-        </article>
+          <article class="coverflow-slide is-far-left">
+            <img src="assets/images/bautizo.jpg" alt="Ejemplo visual de bautizo" />
+            <span>Bautizo</span>
+          </article>
 
-        <article class="coverflow-card">
-          <img src="assets/images/newborn.jpg" alt="Ejemplo visual de sesión newborn" />
-          <span>Newborn</span>
-        </article>
+          <article class="coverflow-slide is-left">
+            <img src="assets/images/newborn.jpg" alt="Ejemplo visual de sesión newborn" />
+            <span>Newborn</span>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -152,20 +152,22 @@
         <h2>Claudia Villegas</h2>
         <h3>Fotografía & videografía profesional</h3>
 
-        <p class="about-quote">Creo que una buena fotografía no solo muestra cómo se veía un momento, también conserva lo que se sintió.</p>
+        <p>Creo que una buena fotografía no solo muestra cómo se veía un momento, también conserva lo que se sintió.</p>
 
         <p>Mi trabajo se enfoca en capturar miradas, detalles y escenas que muchas veces pasan rápido, pero que con el tiempo se vuelven recuerdos importantes. Me gusta acompañar cada sesión con calma, dirección y cuidado, para que cada persona se sienta cómoda frente a la cámara.</p>
       </div>
     </section>
 
     <section class="booking section-padding" id="reservar">
+      <span class="anchor-alias" id="contacto"></span>
+
       <div class="booking-layout">
-        <div class="booking-copy reveal">
+        <div class="booking-panel reveal">
           <p class="eyebrow">Reservar</p>
           <h2>Reserva tu sesión</h2>
           <p>Cuéntame qué tipo de cobertura necesitas y te ayudo a preparar una opción adecuada para tu evento.</p>
 
-          <div class="booking-options" id="contacto">
+          <div class="booking-details">
             <a href="https://wa.me/524775811873" target="_blank" rel="noopener">
               <span>WhatsApp</span>
               <strong>477 581 18 73</strong>
@@ -176,14 +178,14 @@
               <strong>fotoestudioclaudy05@gmail.com</strong>
             </a>
 
-            <a href="https://www.instagram.com/clauvip05" target="_blank" rel="noopener">
+            <a href="https://www.instagram.com/clauvip05/" target="_blank" rel="noopener">
               <span>Instagram</span>
               <strong>@clauvip05</strong>
             </a>
           </div>
         </div>
 
-        <form class="booking-form reveal delay-1" action="https://formspree.io/f/your-form-id" method="POST">
+        <form class="contact-form reveal delay-1" action="https://formspree.io/f/your-form-id" method="POST">
           <label>
             Nombre
             <input type="text" name="nombre" placeholder="Tu nombre" required />
@@ -203,9 +205,7 @@
               <option>3 años</option>
               <option>Bautizo</option>
               <option>Newborn</option>
-              <option>Fotografía</option>
-              <option>Video</option>
-              <option>Drone</option>
+              <option>Drone / video</option>
               <option>Otro evento</option>
             </select>
           </label>
@@ -223,7 +223,7 @@
 
   <footer class="site-footer">
     <p>© <span id="year"></span> Claudia Villegas. Fotografía & videografía profesional.</p>
-    <a href="#top">Volver arriba</a>
+    <a href="#inicio">Volver arriba</a>
   </footer>
 
   <script src="script.js"></script>
