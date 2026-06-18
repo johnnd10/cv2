@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Claudia Villegas | Fotografía y videografía profesional para bodas, XV años, 3 años, bautizos, newborn y tomas con dron." />
+  <title>Claudia Villegas | Fotografía & Videografía</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="Claudia Villegas inicio">
+      <span>Claudia</span>
+      <strong>Villegas</strong>
+    </a>
+
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="nav-menu" aria-label="Navegación principal">
+      <a href="#inicio">Inicio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#portafolio">Portafolio</a>
+      <a href="#drone-video">Drone & video</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#contacto">Contacto</a>
+      <a class="nav-cta" href="#reservar">Reservar sesión</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero work-first" id="inicio" aria-label="Galería principal de trabajo fotográfico">
+      <div class="hero-left">
+        <div class="hero-gallery">
+          <a class="gallery-card featured" href="#portafolio" aria-label="Ver bodas">
+            <img src="assets/images/bodas.jpg" alt="Portafolio de bodas" />
+            <span>Bodas</span>
+          </a>
+
+          <a class="gallery-card tall" href="#portafolio" aria-label="Ver XV años">
+            <img src="assets/images/xv-anos.jpg" alt="Portafolio de XV años" />
+            <span>XV años</span>
+          </a>
+
+          <a class="gallery-card" href="#portafolio" aria-label="Ver bautizo">
+            <img src="assets/images/bautizo.jpg" alt="Portafolio de bautizo" />
+            <span>Bautizo</span>
+          </a>
+
+          <a class="gallery-card" href="#portafolio" aria-label="Ver 3 años">
+            <img src="assets/images/tres-anos.jpg" alt="Portafolio de 3 años" />
+            <span>3 años</span>
+          </a>
+
+          <a class="gallery-card wide" href="#portafolio" aria-label="Ver newborn">
+            <img src="assets/images/newborn.jpg" alt="Portafolio de fotografía newborn" />
+            <span>Newborn</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-video" id="drone-video">
+          <video autoplay muted loop playsinline poster="assets/images/placeholder-drone.svg">
+            <source src="assets/videos/drone-preview.mp4" type="video/mp4">
+            Tu navegador no puede cargar este video.
+          </video>
+          <span class="hero-video-label">Drone & Video</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="services section-padding" id="servicios">
+      <div class="section-heading centered reveal">
+        <p class="eyebrow">Servicios</p>
+        <h2>Tres formas de contar tu evento</h2>
+        <p>Claudia ofrece cobertura visual completa para capturar cada momento desde diferentes perspectivas: fotografía, video y tomas aéreas con drone.</p>
+      </div>
+
+      <div class="service-grid reveal delay-1">
+        <a class="service-card" href="#reservar">
+          <span>01</span>
+          <h3>Fotografía</h3>
+          <p>Sesiones y cobertura profesional para bodas, XV años, bautizos, newborn, retratos familiares y celebraciones especiales.</p>
+        </a>
+
+        <a class="service-card" href="#reservar">
+          <span>02</span>
+          <h3>Video</h3>
+          <p>Cobertura en movimiento para conservar ambiente, emociones, detalles y momentos clave del evento.</p>
+        </a>
+
+        <a class="service-card accent" href="#drone-video">
+          <span>03</span>
+          <h3>Drone</h3>
+          <p>Tomas aéreas para mostrar locaciones, entradas, espacios y una vista cinematográfica del evento.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="portfolio section-padding" id="portafolio">
+      <div class="section-heading centered reveal">
+        <p class="eyebrow">Portafolio</p>
+        <h2>Momentos capturados</h2>
+        <p>Explora una muestra del trabajo de Claudia en distintos tipos de sesión.</p>
+      </div>
+
+      <div class="portfolio-coverflow reveal delay-1" aria-label="Carrusel automático del portafolio">
+        <article class="coverflow-card">
+          <img src="assets/images/bodas.jpg" alt="Ejemplo visual de bodas" />
+          <span>Bodas</span>
+        </article>
+
+        <article class="coverflow-card">
+          <img src="assets/images/xv-anos.jpg" alt="Ejemplo visual de XV años" />
+          <span>XV años</span>
+        </article>
+
+        <article class="coverflow-card">
+          <img src="assets/images/tres-anos.jpg" alt="Ejemplo visual de 3 años" />
+          <span>3 años</span>
+        </article>
+
+        <article class="coverflow-card">
+          <img src="assets/images/bautizo.jpg" alt="Ejemplo visual de bautizo" />
+          <span>Bautizo</span>
+        </article>
+
+        <article class="coverflow-card">
+          <img src="assets/images/newborn.jpg" alt="Ejemplo visual de sesión newborn" />
+          <span>Newborn</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="about section-padding" id="sobre-mi">
+      <div class="about-image reveal">
+        <img src="assets/images/claudia.jpg" alt="Retrato de Claudia Villegas" />
+      </div>
+
+      <div class="about-copy reveal delay-1">
+        <p class="eyebrow">Sobre mí</p>
+        <h2>Claudia Villegas</h2>
+        <h3>Fotografía & videografía profesional</h3>
+
+        <p class="about-quote">Creo que una buena fotografía no solo muestra cómo se veía un momento, también conserva lo que se sintió.</p>
+
+        <p>Mi trabajo se enfoca en capturar miradas, detalles y escenas que muchas veces pasan rápido, pero que con el tiempo se vuelven recuerdos importantes. Me gusta acompañar cada sesión con calma, dirección y cuidado, para que cada persona se sienta cómoda frente a la cámara.</p>
+      </div>
+    </section>
+
+    <section class="booking section-padding" id="reservar">
+      <div class="booking-layout">
+        <div class="booking-copy reveal">
+          <p class="eyebrow">Reservar</p>
+          <h2>Reserva tu sesión</h2>
+          <p>Cuéntame qué tipo de cobertura necesitas y te ayudo a preparar una opción adecuada para tu evento.</p>
+
+          <div class="booking-options" id="contacto">
+            <a href="https://wa.me/524775811873" target="_blank" rel="noopener">
+              <span>WhatsApp</span>
+              <strong>477 581 18 73</strong>
+            </a>
+
+            <a href="mailto:fotoestudioclaudy05@gmail.com">
+              <span>Correo</span>
+              <strong>fotoestudioclaudy05@gmail.com</strong>
+            </a>
+
+            <a href="https://www.instagram.com/clauvip05" target="_blank" rel="noopener">
+              <span>Instagram</span>
+              <strong>@clauvip05</strong>
+            </a>
+          </div>
+        </div>
+
+        <form class="booking-form reveal delay-1" action="https://formspree.io/f/your-form-id" method="POST">
+          <label>
+            Nombre
+            <input type="text" name="nombre" placeholder="Tu nombre" required />
+          </label>
+
+          <label>
+            Correo
+            <input type="email" name="correo" placeholder="tu@email.com" required />
+          </label>
+
+          <label>
+            Tipo de evento
+            <select name="servicio" required>
+              <option value="">Selecciona una opción</option>
+              <option>Bodas</option>
+              <option>XV años</option>
+              <option>3 años</option>
+              <option>Bautizo</option>
+              <option>Newborn</option>
+              <option>Fotografía</option>
+              <option>Video</option>
+              <option>Drone</option>
+              <option>Otro evento</option>
+            </select>
+          </label>
+
+          <label>
+            Mensaje
+            <textarea name="mensaje" rows="4" placeholder="Cuéntame qué necesitas" required></textarea>
+          </label>
+
+          <button class="button primary" type="submit">Enviar solicitud</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Claudia Villegas. Fotografía & videografía profesional.</p>
+    <a href="#top">Volver arriba</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
