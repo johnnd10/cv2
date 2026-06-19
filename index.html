@@ -142,6 +142,24 @@
       </div>
     </section>
 
+    <section class="full-gallery section-padding" id="galeria">
+      <div class="section-heading centered reveal">
+        <p class="eyebrow">Galería completa</p>
+        <h2>Explora por evento</h2>
+        <p>Selecciona una categoría para ver más fotografías del portafolio de Claudia.</p>
+      </div>
+
+      <div class="gallery-tabs reveal delay-1" id="gallery-tabs" aria-label="Categorías de galería">
+        <button class="gallery-tab active" type="button" data-category="bodas">Bodas</button>
+        <button class="gallery-tab" type="button" data-category="xv-anos">XV años</button>
+        <button class="gallery-tab" type="button" data-category="tres-anos">3 años</button>
+        <button class="gallery-tab" type="button" data-category="bautizo">Bautizo</button>
+        <button class="gallery-tab" type="button" data-category="newborn">Newborn</button>
+      </div>
+
+      <div class="gallery-grid reveal delay-2" id="gallery-grid" aria-live="polite"></div>
+    </section>
+
     <section class="about section-padding" id="sobre-mi">
       <div class="about-image reveal">
         <img src="assets/images/claudia.jpg" alt="Retrato de Claudia Villegas" />
@@ -223,11 +241,24 @@
     </section>
   </main>
 
+  <div class="lightbox" id="gallery-lightbox" aria-hidden="true">
+    <button class="lightbox-close" type="button" aria-label="Cerrar galería">×</button>
+    <button class="lightbox-arrow lightbox-prev" type="button" aria-label="Foto anterior">‹</button>
+
+    <div class="lightbox-content">
+      <img id="lightbox-image" src="" alt="Vista ampliada de fotografía" />
+      <p id="lightbox-caption"></p>
+    </div>
+
+    <button class="lightbox-arrow lightbox-next" type="button" aria-label="Foto siguiente">›</button>
+  </div>
+
   <footer class="site-footer">
     <p>© <span id="year"></span> Claudia Villegas. Fotografía & videografía profesional.</p>
     <a href="#inicio">Volver arriba</a>
   </footer>
 
+  <script src="gallery-data.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

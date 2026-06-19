@@ -253,6 +253,144 @@ document.addEventListener("DOMContentLoaded", () => {
     startAutoplay();
   }
 
+  const galleryImages = window.galleryImages || {};
+  const galleryGrid = document.getElementById("gallery-grid");
+  const galleryTabs = Array.from(document.querySelectorAll(".gallery-tab"));
+  const lightbox = document.getElementById("gallery-lightbox");
+  const lightboxImage = document.getElementById("lightbox-image");
+  const lightboxCaption = document.getElementById("lightbox-caption");
+  const lightboxClose = document.querySelector(".lightbox-close");
+  const lightboxPrev = document.querySelector(".lightbox-prev");
+  const lightboxNext = document.querySelector(".lightbox-next");
+
+  const galleryLabels = {
+    "bodas": "Bodas",
+    "xv-anos": "XV años",
+    "tres-anos": "3 años",
+    "bautizo": "Bautizo",
+    "newborn": "Newborn"
+  };
+
+  let activeGalleryCategory = "bodas";
+  let activeGalleryImages = [];
+  let activeGalleryIndex = 0;
+
+  const renderGallery = (category) => {
+    if (!galleryGrid) return;
+
+    activeGalleryCategory = category;
+    activeGalleryImages = galleryImages[category] || [];
+
+    galleryTabs.forEach((tab) => {
+      tab.classList.toggle("active", tab.dataset.category === category);
+    });
+
+    galleryGrid.innerHTML = "";
+
+    if (!activeGalleryImages.length) {
+      galleryGrid.innerHTML = `<p class="gallery-empty">No hay fotografías disponibles en esta categoría todavía.</p>`;
+      return;
+    }
+
+    activeGalleryImages.forEach((imagePath, index) => {
+      const button = document.createElement("button");
+      button.className = "gallery-item";
+      button.type = "button";
+      button.setAttribute("aria-label", `Abrir fotografía de ${galleryLabels[category]}`);
+
+      const image = document.createElement("img");
+      image.src = imagePath;
+      image.alt = `${galleryLabels[category]} - Fotografía ${index + 1}`;
+      image.loading = "lazy";
+
+      button.appendChild(image);
+
+      button.addEventListener("click", () => {
+        openLightbox(index);
+      });
+
+      galleryGrid.appendChild(button);
+    });
+  };
+
+  const openLightbox = (index) => {
+    if (!lightbox || !lightboxImage || !activeGalleryImages.length) return;
+
+    activeGalleryIndex = index;
+    const imagePath = activeGalleryImages[activeGalleryIndex];
+
+    lightboxImage.src = imagePath;
+    lightboxImage.alt = `${galleryLabels[activeGalleryCategory]} - Fotografía ${activeGalleryIndex + 1}`;
+
+    if (lightboxCaption) {
+      lightboxCaption.textContent = `${galleryLabels[activeGalleryCategory]} · ${activeGalleryIndex + 1} / ${activeGalleryImages.length}`;
+    }
+
+    lightbox.classList.add("open");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.classList.add("lightbox-open");
+  };
+
+  const closeLightbox = () => {
+    if (!lightbox || !lightboxImage) return;
+
+    lightbox.classList.remove("open");
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("lightbox-open");
+
+    lightboxImage.src = "";
+  };
+
+  const showNextLightboxImage = () => {
+    if (!activeGalleryImages.length) return;
+
+    activeGalleryIndex = (activeGalleryIndex + 1) % activeGalleryImages.length;
+    openLightbox(activeGalleryIndex);
+  };
+
+  const showPreviousLightboxImage = () => {
+    if (!activeGalleryImages.length) return;
+
+    activeGalleryIndex = (activeGalleryIndex - 1 + activeGalleryImages.length) % activeGalleryImages.length;
+    openLightbox(activeGalleryIndex);
+  };
+
+  galleryTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      renderGallery(tab.dataset.category);
+    });
+  });
+
+  lightboxClose?.addEventListener("click", closeLightbox);
+  lightboxNext?.addEventListener("click", showNextLightboxImage);
+  lightboxPrev?.addEventListener("click", showPreviousLightboxImage);
+
+  lightbox?.addEventListener("click", (event) => {
+    if (event.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (!lightbox?.classList.contains("open")) return;
+
+    if (event.key === "Escape") {
+      closeLightbox();
+    }
+
+    if (event.key === "ArrowRight") {
+      showNextLightboxImage();
+    }
+
+    if (event.key === "ArrowLeft") {
+      showPreviousLightboxImage();
+    }
+  });
+
+  if (galleryGrid) {
+    renderGallery(activeGalleryCategory);
+  }
+
   const whatsappForm = document.getElementById("whatsapp-form");
 
   if (whatsappForm) {

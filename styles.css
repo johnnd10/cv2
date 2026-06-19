@@ -32,6 +32,10 @@ body.no-select {
   user-select: none;
 }
 
+body.lightbox-open {
+  overflow: hidden;
+}
+
 img {
   display: block;
   width: 100%;
@@ -582,6 +586,193 @@ h2 {
   display: none;
 }
 
+/* FULL GALLERY */
+
+.full-gallery {
+  background:
+    radial-gradient(circle at 18% 14%, rgba(216,183,106,.16), transparent 32%),
+    var(--cream);
+}
+
+.full-gallery .section-heading {
+  margin-bottom: 30px;
+}
+
+.gallery-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  max-width: 980px;
+  margin: 0 auto 34px;
+}
+
+.gallery-tab {
+  border: 1px solid rgba(7,20,38,.18);
+  background: rgba(255,255,255,.75);
+  color: var(--navy);
+  border-radius: 999px;
+  padding: 12px 18px;
+  cursor: pointer;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-size: .76rem;
+  transition: background .2s ease, color .2s ease, transform .2s ease, border-color .2s ease;
+}
+
+.gallery-tab:hover {
+  transform: translateY(-2px);
+  border-color: rgba(216,183,106,.85);
+}
+
+.gallery-tab.active {
+  background: var(--navy);
+  color: var(--gold-soft);
+  border-color: var(--navy);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 20px;
+  background: var(--navy-card);
+  box-shadow: 0 18px 44px rgba(7,20,38,.12);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .45s ease, filter .45s ease;
+}
+
+.gallery-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(7,20,38,.58));
+  opacity: .72;
+  transition: opacity .25s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+  filter: saturate(1.06);
+}
+
+.gallery-item:hover::after {
+  opacity: .92;
+}
+
+.gallery-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #4c5a6e;
+  font-weight: 700;
+  padding: 40px 20px;
+}
+
+/* LIGHTBOX */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 34px clamp(16px, 4vw, 60px);
+  background: rgba(2, 8, 16, .94);
+}
+
+.lightbox.open {
+  display: flex;
+}
+
+.lightbox-content {
+  width: min(100%, 1180px);
+  max-height: 88svh;
+  display: grid;
+  gap: 14px;
+  justify-items: center;
+}
+
+.lightbox-content img {
+  width: auto;
+  max-width: 100%;
+  max-height: 78svh;
+  object-fit: contain;
+  border-radius: 18px;
+  box-shadow: 0 26px 70px rgba(0,0,0,.45);
+}
+
+.lightbox-content p {
+  margin: 0;
+  color: var(--gold-soft);
+  font-size: .84rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .16em;
+}
+
+.lightbox-close,
+.lightbox-arrow {
+  position: absolute;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.08);
+  color: var(--white);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background .2s ease, transform .2s ease;
+}
+
+.lightbox-close:hover,
+.lightbox-arrow:hover {
+  background: rgba(255,255,255,.16);
+  transform: scale(1.04);
+}
+
+.lightbox-close {
+  top: 24px;
+  right: 24px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.lightbox-arrow {
+  top: 50%;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  font-size: 2.6rem;
+  line-height: 1;
+}
+
+.lightbox-prev {
+  left: 24px;
+}
+
+.lightbox-next {
+  right: 24px;
+}
+
 /* ABOUT */
 
 .about {
@@ -935,6 +1126,24 @@ textarea {
       scale(.7);
   }
 
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+  }
+
+  .lightbox-arrow {
+    top: auto;
+    bottom: 26px;
+  }
+
+  .lightbox-prev {
+    left: calc(50% - 70px);
+  }
+
+  .lightbox-next {
+    right: calc(50% - 70px);
+  }
+
   .about-image img {
     height: 380px;
   }
@@ -992,6 +1201,24 @@ textarea {
       translate(calc(-50% + 72vw), -50%)
       rotateY(-24deg)
       scale(.65);
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gallery-tab {
+    width: calc(50% - 6px);
+    padding: 11px 10px;
+    font-size: .68rem;
+  }
+
+  .lightbox {
+    padding: 24px 14px 96px;
+  }
+
+  .lightbox-content img {
+    max-height: 68svh;
   }
 
   .about {
