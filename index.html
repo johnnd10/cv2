@@ -28,8 +28,8 @@
     <nav class="nav-menu" aria-label="Navegación principal">
       <a href="#inicio">Inicio</a>
       <a href="#servicios">Servicios</a>
+      <a href="#video">Drone & video</a>
       <a href="#portafolio">Portafolio</a>
-      <a href="#drone-video">Drone & video</a>
       <a href="#sobre-mi">Sobre mí</a>
       <a href="#contacto">Contacto</a>
       <a class="nav-cta" href="#reservar">Reservar sesión</a>
@@ -37,116 +37,236 @@
   </header>
 
   <main>
-    <section class="hero work-first" id="inicio" aria-label="Galería principal de trabajo fotográfico">
-      <div class="hero-left">
-        <div class="hero-gallery">
-          <a class="gallery-card featured" href="#portafolio" aria-label="Ver bodas">
-            <img src="assets/images/bodas.jpg" alt="Portafolio de bodas" />
-            <span>Bodas</span>
-          </a>
+    <section class="hero" id="inicio" aria-label="Carrusel principal de fotografía">
+      <div class="hero-coverflow">
+        <div class="hero-stage" tabindex="0">
+          <article class="hero-slide is-center">
+            <img src="assets/images/bodas.jpg" alt="Fotografía destacada de bodas" />
+          </article>
 
-          <a class="gallery-card tall" href="#portafolio" aria-label="Ver XV años">
-            <img src="assets/images/xv-anos.jpg" alt="Portafolio de XV años" />
-            <span>XV años</span>
-          </a>
+          <article class="hero-slide is-right">
+            <img src="assets/images/xv-anos.jpg" alt="Fotografía destacada de XV años" />
+          </article>
 
-          <a class="gallery-card" href="#portafolio" aria-label="Ver bautizo">
-            <img src="assets/images/bautizo.jpg" alt="Portafolio de bautizo" />
-            <span>Bautizo</span>
-          </a>
+          <article class="hero-slide is-far-right">
+            <img src="assets/images/tres-anos.jpg" alt="Fotografía destacada de 3 años" />
+          </article>
 
-          <a class="gallery-card" href="#portafolio" aria-label="Ver 3 años">
-            <img src="assets/images/tres-anos.jpg" alt="Portafolio de 3 años" />
-            <span>3 años</span>
-          </a>
+          <article class="hero-slide is-far-left">
+            <img src="assets/images/bautizo.jpg" alt="Fotografía destacada de bautizo" />
+          </article>
 
-          <a class="gallery-card wide" href="#portafolio" aria-label="Ver newborn">
-            <img src="assets/images/newborn.jpg" alt="Portafolio de fotografía newborn" />
-            <span>Newborn</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="hero-right">
-        <div class="hero-video" id="drone-video">
-          <video autoplay muted loop playsinline poster="assets/images/placeholder-drone.svg">
-            <source src="assets/videos/drone-preview.mp4" type="video/mp4">
-            Tu navegador no puede cargar este video.
-          </video>
-          <span class="hero-video-label">Drone & video</span>
+          <article class="hero-slide is-left">
+            <img src="assets/images/newborn.jpg" alt="Fotografía destacada de newborn" />
+          </article>
         </div>
       </div>
     </section>
 
     <section class="services section-padding" id="servicios">
-      <div class="section-heading centered reveal">
+      <div class="services-intro reveal">
         <p class="eyebrow">Servicios</p>
-        <h2>Tres formas de contar tu evento</h2>
-        <p>Claudia ofrece cobertura visual completa para capturar cada momento desde diferentes perspectivas: fotografía, video y tomas aéreas con drone.</p>
+        <h2>Servicios y paquetes</h2>
       </div>
 
-      <div class="service-grid reveal delay-1">
+      <div class="service-strip reveal delay-1">
         <article class="service-card">
           <span>01</span>
           <h3>Fotografía</h3>
-          <p>Sesiones y cobertura profesional para bodas, XV años, bautizos, newborn, retratos familiares y celebraciones especiales.</p>
+          <p>Cobertura profesional para sesiones, eventos y recuerdos impresos.</p>
         </article>
 
         <article class="service-card">
           <span>02</span>
           <h3>Video</h3>
-          <p>Cobertura en movimiento para conservar ambiente, emociones, detalles y momentos clave del evento.</p>
+          <p>Grabación, edición, video clip y semblanza para eventos especiales.</p>
         </article>
 
         <article class="service-card accent">
           <span>03</span>
           <h3>Drone</h3>
-          <p>Tomas aéreas para mostrar locaciones, entradas, espacios y una vista cinematográfica del evento.</p>
+          <p>Tomas aéreas para templo, recepción, locaciones y momentos clave.</p>
         </article>
       </div>
-    </section>
 
-    <section class="portfolio section-padding" id="portafolio">
-      <div class="section-heading centered reveal">
-        <p class="eyebrow">Portafolio</p>
-        <h2>Momentos capturados</h2>
-      </div>
+      <div class="packages reveal delay-2">
+        <div class="packages-heading">
+          <p class="eyebrow">Paquetes XV años</p>
+          <h3>Opciones principales</h3>
+        </div>
 
-      <div class="portfolio-coverflow reveal delay-1" aria-label="Galería de portafolio">
-        <div class="coverflow-stage" tabindex="0">
-          <article class="coverflow-slide is-center">
-            <img src="assets/images/bodas.jpg" alt="Ejemplo visual de bodas" />
-            <span>Bodas</span>
+        <div class="package-grid">
+          <article class="package-card">
+            <div class="package-topline">
+              <p>Paquete 1</p>
+              <strong>$6,800</strong>
+            </div>
+
+            <div class="package-columns">
+              <div>
+                <h4>Fotos</h4>
+                <ul>
+                  <li>1 sesión</li>
+                  <li>1 ampliación 40x50 ctms</li>
+                  <li>70 fotos</li>
+                  <li>10x15 ctms impresas y digitales</li>
+                  <li>Marco incluido</li>
+                  <li>Tripie sin costo</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4>Video</h4>
+                <ul>
+                  <li>Video grabación</li>
+                  <li>4 horas</li>
+                  <li>Misa y fiesta</li>
+                  <li>Edición 60 minutos</li>
+                  <li>Video clip semblanza</li>
+                  <li>Semblanza con 30 fotos</li>
+                  <li>1 USB Full HD</li>
+                </ul>
+              </div>
+            </div>
           </article>
 
-          <article class="coverflow-slide is-right">
-            <img src="assets/images/xv-anos.jpg" alt="Ejemplo visual de XV años" />
-            <span>XV años</span>
+          <article class="package-card featured">
+            <div class="package-topline">
+              <p>Paquete 2</p>
+              <strong>$7,800</strong>
+            </div>
+
+            <div class="package-columns">
+              <div>
+                <h4>Fotos</h4>
+                <ul>
+                  <li>1 sesión</li>
+                  <li>1 ampliación 40x50 ctms</li>
+                  <li>100 fotos</li>
+                  <li>10x15 ctms impresas y digitales</li>
+                  <li>Marco incluido</li>
+                  <li>Tripie sin costo</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4>Video</h4>
+                <ul>
+                  <li>Video grabación</li>
+                  <li>5 horas</li>
+                  <li>Casa, misa y fiesta</li>
+                  <li>Edición 90 minutos</li>
+                  <li>Video clip semblanza</li>
+                  <li>Semblanza con 50 fotos</li>
+                  <li>1 USB Full HD</li>
+                </ul>
+              </div>
+            </div>
           </article>
 
-          <article class="coverflow-slide is-far-right">
-            <img src="assets/images/tres-anos.jpg" alt="Ejemplo visual de 3 años" />
-            <span>3 años</span>
+          <article class="package-card">
+            <div class="package-topline">
+              <p>Paquete 3</p>
+              <strong>$8,500</strong>
+            </div>
+
+            <div class="package-columns">
+              <div>
+                <h4>Fotos</h4>
+                <ul>
+                  <li>1 sesión</li>
+                  <li>1 ampliación 40x50 ctms</li>
+                  <li>150 fotos</li>
+                  <li>10x15 ctm</li>
+                  <li>Marco incluido</li>
+                  <li>Tripie sin costo</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4>Video</h4>
+                <ul>
+                  <li>Video grabación</li>
+                  <li>5 horas</li>
+                  <li>Casa, misa y fiesta</li>
+                  <li>Edición 2 hrs.</li>
+                  <li>Video clip</li>
+                  <li>Semblanza con 50 fotos</li>
+                  <li>1 USB Full HD</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="extras-heading">
+          <p class="eyebrow">Extras</p>
+          <h3>Complementos para tu evento</h3>
+        </div>
+
+        <div class="extras-grid">
+          <article class="extra-card">
+            <span>Tomas de drone</span>
+            <h4>Templo y recepción</h4>
+            <p>$2,800</p>
           </article>
 
-          <article class="coverflow-slide is-far-left">
-            <img src="assets/images/bautizo.jpg" alt="Ejemplo visual de bautizo" />
-            <span>Bautizo</span>
+          <article class="extra-card">
+            <span>Sesión XV años</span>
+            <h4>Renta de yegua</h4>
+            <p>$1,700</p>
           </article>
 
-          <article class="coverflow-slide is-left">
-            <img src="assets/images/newborn.jpg" alt="Ejemplo visual de sesión newborn" />
-            <span>Newborn</span>
+          <article class="extra-card">
+            <span>Lo mejor para tu evento</span>
+            <h4>Cuadro / collage</h4>
+            <p>12 fotos · $800</p>
+          </article>
+
+          <article class="extra-card dark">
+            <span>Mis XV</span>
+            <h4>Álbum digital</h4>
+            <p>100 fotos · Ampliación 40x50 · Video 5 horas Full HD · Tomas de drone · $12,500</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="full-gallery section-padding" id="galeria">
-      <div class="section-heading centered reveal">
-        <p class="eyebrow">Galería completa</p>
-        <h2>Explora por evento</h2>
-        <p>Selecciona una categoría para ver más fotografías del portafolio de Claudia.</p>
+    <section class="video-section section-padding" id="video">
+      <div class="video-kicker reveal">
+        <p class="eyebrow">Drone & video</p>
+      </div>
+
+      <div class="video-grid reveal delay-1">
+        <button class="video-card video-trigger" type="button" data-video="assets/videos/drone-preview.mp4" aria-label="Reproducir video destacado">
+          <video class="video-preview" autoplay muted loop playsinline preload="metadata">
+            <source src="assets/videos/drone-preview.mp4" type="video/mp4">
+          </video>
+        </button>
+
+        <button class="video-card video-trigger" type="button" data-video="assets/videos/drone-xv-anos-1.mp4" aria-label="Reproducir video XV años 1">
+          <video class="video-preview" autoplay muted loop playsinline preload="metadata">
+            <source src="assets/videos/drone-xv-anos-1.mp4" type="video/mp4">
+          </video>
+        </button>
+
+        <button class="video-card video-trigger" type="button" data-video="assets/videos/drone-xv-anos-2.mp4" aria-label="Reproducir video XV años 2">
+          <video class="video-preview" autoplay muted loop playsinline preload="metadata">
+            <source src="assets/videos/drone-xv-anos-2.mp4" type="video/mp4">
+          </video>
+        </button>
+
+        <button class="video-card video-trigger" type="button" data-video="assets/videos/drone-xv-anos-3.mp4" aria-label="Reproducir video XV años 3">
+          <video class="video-preview" autoplay muted loop playsinline preload="metadata">
+            <source src="assets/videos/drone-xv-anos-3.mp4" type="video/mp4">
+          </video>
+        </button>
+      </div>
+    </section>
+
+    <section class="portfolio section-padding" id="portafolio">
+      <div class="portfolio-kicker reveal">
+        <p class="eyebrow">Portafolio</p>
       </div>
 
       <div class="gallery-tabs reveal delay-1" id="gallery-tabs" aria-label="Categorías de galería">
@@ -158,6 +278,10 @@
       </div>
 
       <div class="gallery-grid reveal delay-2" id="gallery-grid" aria-live="polite"></div>
+
+      <div class="gallery-actions" id="gallery-actions">
+        <button class="button gallery-more" type="button" id="gallery-more-button">Ver más fotografías</button>
+      </div>
     </section>
 
     <section class="about section-padding" id="sobre-mi">
@@ -251,6 +375,14 @@
     </div>
 
     <button class="lightbox-arrow lightbox-next" type="button" aria-label="Foto siguiente">›</button>
+  </div>
+
+  <div class="video-modal" id="video-modal" aria-hidden="true">
+    <button class="video-modal-close" type="button" aria-label="Cerrar video">×</button>
+
+    <div class="video-modal-content">
+      <video id="video-modal-player" controls playsinline></video>
+    </div>
   </div>
 
   <footer class="site-footer">

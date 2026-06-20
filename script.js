@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
       let targetId = rawTarget.slice(1);
 
       if (targetId === "drone-video") {
-        targetId = "inicio";
+        targetId = "video";
       }
 
       const target = document.getElementById(targetId);
@@ -114,22 +114,22 @@ document.addEventListener("DOMContentLoaded", () => {
     sections.forEach((section) => sectionObserver.observe(section));
   }
 
-  const coverflow = document.querySelector(".portfolio-coverflow");
-  const coverflowStage = document.querySelector(".coverflow-stage");
-  const coverflowSlides = Array.from(document.querySelectorAll(".coverflow-slide"));
+  const heroCoverflow = document.querySelector(".hero-coverflow");
+  const heroStage = document.querySelector(".hero-stage");
+  const heroSlides = Array.from(document.querySelectorAll(".hero-slide"));
 
-  if (coverflow && coverflowStage && coverflowSlides.length) {
-    let activeIndex = 0;
-    let autoplay;
+  if (heroCoverflow && heroStage && heroSlides.length) {
+    let activeHeroIndex = 0;
+    let heroAutoplay;
     let pointerStartX = 0;
     let pointerCurrentX = 0;
     let isDragging = false;
     let didDrag = false;
 
-    const updateCoverflow = () => {
-      const total = coverflowSlides.length;
+    const updateHeroCoverflow = () => {
+      const total = heroSlides.length;
 
-      coverflowSlides.forEach((slide, index) => {
+      heroSlides.forEach((slide, index) => {
         slide.classList.remove(
           "is-center",
           "is-left",
@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
           "is-far-right"
         );
 
-        const position = (index - activeIndex + total) % total;
+        const position = (index - activeHeroIndex + total) % total;
 
         if (position === 0) {
           slide.classList.add("is-center");
@@ -154,39 +154,39 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     };
 
-    const goToSlide = (index) => {
-      const total = coverflowSlides.length;
-      activeIndex = (index + total) % total;
-      updateCoverflow();
+    const goToHeroSlide = (index) => {
+      const total = heroSlides.length;
+      activeHeroIndex = (index + total) % total;
+      updateHeroCoverflow();
     };
 
-    const nextSlide = () => {
-      goToSlide(activeIndex + 1);
+    const nextHeroSlide = () => {
+      goToHeroSlide(activeHeroIndex + 1);
     };
 
-    const previousSlide = () => {
-      goToSlide(activeIndex - 1);
+    const previousHeroSlide = () => {
+      goToHeroSlide(activeHeroIndex - 1);
     };
 
-    const startAutoplay = () => {
-      stopAutoplay();
-      autoplay = window.setInterval(nextSlide, 5200);
+    const startHeroAutoplay = () => {
+      stopHeroAutoplay();
+      heroAutoplay = window.setInterval(nextHeroSlide, 5200);
     };
 
-    const stopAutoplay = () => {
-      if (autoplay) {
-        window.clearInterval(autoplay);
+    const stopHeroAutoplay = () => {
+      if (heroAutoplay) {
+        window.clearInterval(heroAutoplay);
       }
     };
 
-    coverflowStage.addEventListener("pointerdown", (event) => {
+    heroStage.addEventListener("pointerdown", (event) => {
       isDragging = true;
       didDrag = false;
       pointerStartX = event.clientX;
       pointerCurrentX = event.clientX;
-      coverflowStage.classList.add("is-dragging");
+      heroStage.classList.add("is-dragging");
       document.body.classList.add("no-select");
-      stopAutoplay();
+      stopHeroAutoplay();
     });
 
     window.addEventListener("pointermove", (event) => {
@@ -205,57 +205,150 @@ document.addEventListener("DOMContentLoaded", () => {
       const distance = pointerCurrentX - pointerStartX;
 
       isDragging = false;
-      coverflowStage.classList.remove("is-dragging");
+      heroStage.classList.remove("is-dragging");
       document.body.classList.remove("no-select");
 
       if (Math.abs(distance) > 42) {
         if (distance < 0) {
-          nextSlide();
+          nextHeroSlide();
         } else {
-          previousSlide();
+          previousHeroSlide();
         }
       }
 
-      startAutoplay();
+      startHeroAutoplay();
     });
 
-    coverflowStage.addEventListener("click", (event) => {
+    heroStage.addEventListener("click", (event) => {
       if (didDrag) return;
 
-      const rect = coverflowStage.getBoundingClientRect();
+      const rect = heroStage.getBoundingClientRect();
       const x = event.clientX - rect.left;
 
       if (x < rect.width * 0.34) {
-        previousSlide();
-        startAutoplay();
+        previousHeroSlide();
+        startHeroAutoplay();
       } else if (x > rect.width * 0.66) {
-        nextSlide();
-        startAutoplay();
+        nextHeroSlide();
+        startHeroAutoplay();
       }
     });
 
-    coverflowStage.addEventListener("keydown", (event) => {
+    heroStage.addEventListener("keydown", (event) => {
       if (event.key === "ArrowRight") {
-        nextSlide();
-        startAutoplay();
+        nextHeroSlide();
+        startHeroAutoplay();
       }
 
       if (event.key === "ArrowLeft") {
-        previousSlide();
-        startAutoplay();
+        previousHeroSlide();
+        startHeroAutoplay();
       }
     });
 
-    coverflow.addEventListener("mouseenter", stopAutoplay);
-    coverflow.addEventListener("mouseleave", startAutoplay);
+    heroCoverflow.addEventListener("mouseenter", stopHeroAutoplay);
+    heroCoverflow.addEventListener("mouseleave", startHeroAutoplay);
 
-    updateCoverflow();
-    startAutoplay();
+    updateHeroCoverflow();
+    startHeroAutoplay();
   }
+
+  const previewVideos = Array.from(document.querySelectorAll(".video-preview"));
+  const videoTriggers = Array.from(document.querySelectorAll(".video-trigger"));
+  const videoModal = document.getElementById("video-modal");
+  const videoModalPlayer = document.getElementById("video-modal-player");
+  const videoModalClose = document.querySelector(".video-modal-close");
+
+  const playPreviewIfVisible = (video) => {
+    const rect = video.getBoundingClientRect();
+    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+    if (isVisible) {
+      video.muted = true;
+      video.play().catch(() => {});
+    }
+  };
+
+  if ("IntersectionObserver" in window && previewVideos.length) {
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const video = entry.target;
+
+        if (entry.isIntersecting) {
+          video.muted = true;
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      });
+    }, {
+      threshold: 0.35
+    });
+
+    previewVideos.forEach((video) => {
+      video.muted = true;
+      videoObserver.observe(video);
+    });
+  }
+
+  const openVideoModal = (videoPath) => {
+    if (!videoModal || !videoModalPlayer) return;
+
+    previewVideos.forEach((video) => video.pause());
+
+    videoModalPlayer.src = videoPath;
+    videoModalPlayer.muted = false;
+    videoModalPlayer.controls = true;
+
+    videoModal.classList.add("open");
+    videoModal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("lightbox-open");
+
+    videoModalPlayer.play().catch(() => {});
+  };
+
+  const closeVideoModal = () => {
+    if (!videoModal || !videoModalPlayer) return;
+
+    videoModalPlayer.pause();
+    videoModalPlayer.removeAttribute("src");
+    videoModalPlayer.load();
+
+    videoModal.classList.remove("open");
+    videoModal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("lightbox-open");
+
+    previewVideos.forEach((video) => {
+      playPreviewIfVisible(video);
+    });
+  };
+
+  videoTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      const videoPath = trigger.dataset.video;
+      openVideoModal(videoPath);
+    });
+  });
+
+  videoModalClose?.addEventListener("click", closeVideoModal);
+
+  videoModal?.addEventListener("click", (event) => {
+    if (event.target === videoModal) {
+      closeVideoModal();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && videoModal?.classList.contains("open")) {
+      closeVideoModal();
+    }
+  });
 
   const galleryImages = window.galleryImages || {};
   const galleryGrid = document.getElementById("gallery-grid");
   const galleryTabs = Array.from(document.querySelectorAll(".gallery-tab"));
+  const galleryMoreButton = document.getElementById("gallery-more-button");
+  const galleryActions = document.getElementById("gallery-actions");
   const lightbox = document.getElementById("gallery-lightbox");
   const lightboxImage = document.getElementById("lightbox-image");
   const lightboxCaption = document.getElementById("lightbox-caption");
@@ -274,6 +367,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let activeGalleryCategory = "bodas";
   let activeGalleryImages = [];
   let activeGalleryIndex = 0;
+  let visibleGalleryCount = 8;
 
   const renderGallery = (category) => {
     if (!galleryGrid) return;
@@ -289,10 +383,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!activeGalleryImages.length) {
       galleryGrid.innerHTML = `<p class="gallery-empty">No hay fotografías disponibles en esta categoría todavía.</p>`;
+
+      if (galleryActions) {
+        galleryActions.style.display = "none";
+      }
+
       return;
     }
 
-    activeGalleryImages.forEach((imagePath, index) => {
+    const visibleImages = activeGalleryImages.slice(0, visibleGalleryCount);
+
+    visibleImages.forEach((imagePath, index) => {
       const button = document.createElement("button");
       button.className = "gallery-item";
       button.type = "button";
@@ -311,6 +412,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
       galleryGrid.appendChild(button);
     });
+
+    if (galleryActions && galleryMoreButton) {
+      if (visibleGalleryCount >= activeGalleryImages.length) {
+        galleryActions.style.display = "none";
+      } else {
+        galleryActions.style.display = "flex";
+        galleryMoreButton.textContent = `Ver más fotografías`;
+      }
+    }
   };
 
   const openLightbox = (index) => {
@@ -357,8 +467,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   galleryTabs.forEach((tab) => {
     tab.addEventListener("click", () => {
+      visibleGalleryCount = 8;
       renderGallery(tab.dataset.category);
     });
+  });
+
+  galleryMoreButton?.addEventListener("click", () => {
+    visibleGalleryCount += 8;
+    renderGallery(activeGalleryCategory);
   });
 
   lightboxClose?.addEventListener("click", closeLightbox);
