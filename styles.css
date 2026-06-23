@@ -306,9 +306,9 @@ h2 {
   pointer-events: none;
   transform: translate(-50%, -50%) scale(0.5);
   transition:
-    transform 0.55s ease,
-    opacity 0.55s ease,
-    filter 0.55s ease;
+    transform 0.48s ease,
+    opacity 0.48s ease,
+    filter 0.48s ease;
 }
 
 .hero-slide img {
@@ -1303,13 +1303,14 @@ textarea {
   }
 
   .hero {
+    height: clamp(500px, 72svh, 620px);
     margin-top: var(--header-height);
-    padding: 20px 18px 40px;
+    padding: 14px 18px 22px;
   }
 
   .hero-slide {
     width: 78vw;
-    height: 410px;
+    height: clamp(290px, 44vh, 390px);
   }
 
   .hero-slide.is-left {
@@ -1351,44 +1352,81 @@ textarea {
 
 @media (max-width: 760px) {
   .services {
-    padding-top: 42px;
-    padding-bottom: 42px;
+    padding-top: 38px;
+    padding-bottom: 34px;
+  }
+
+  .services-intro {
+    margin-bottom: 18px;
   }
 
   .services-intro h2 {
-    font-size: clamp(2.3rem, 12vw, 3.7rem);
+    font-size: clamp(2.25rem, 11.4vw, 3.45rem);
+  }
+
+  .service-strip {
+    gap: 14px;
+  }
+
+  .service-card {
+    min-height: 116px;
+    border-radius: 22px;
+  }
+
+  .service-card p {
+    padding: 22px;
+    font-size: 0.93rem;
+  }
+
+  .packages-panel {
+    margin-top: 34px;
   }
 
   .packages-header {
     width: min(100%, calc(100% - 32px));
-    margin-bottom: 18px;
+    margin-bottom: 16px;
   }
 
   .packages-header h2 {
-    font-size: clamp(2.2rem, 12vw, 3.1rem);
+    font-size: clamp(2.2rem, 11vw, 3rem);
   }
 
   .packages-rail {
     gap: 14px;
     padding-left: 16px;
     padding-right: 16px;
-    padding-bottom: 12px;
+    padding-bottom: 10px;
     scroll-padding-left: 16px;
   }
 
   .package-card {
-    flex-basis: min(86vw, 360px);
-    min-height: 250px;
+    flex-basis: min(84vw, 350px);
+    min-height: 228px;
     border-radius: 22px;
-    padding: 22px 20px;
+    padding: 21px 20px;
+  }
+
+  .package-card__top {
+    margin-bottom: 14px;
   }
 
   .package-card__name {
-    font-size: 2rem;
+    font-size: 1.95rem;
+    margin-bottom: 14px;
   }
 
   .package-card__price {
-    font-size: 2.7rem;
+    font-size: 2.65rem;
+  }
+
+  .package-card__summary {
+    gap: 7px;
+    margin-bottom: 16px;
+  }
+
+  .package-card__summary span {
+    font-size: 0.74rem;
+    padding: 7px 10px;
   }
 
   .package-card__columns {
@@ -1421,9 +1459,15 @@ textarea {
     letter-spacing: 0.13em;
   }
 
+  .hero {
+    height: clamp(470px, 68svh, 560px);
+    padding-top: 8px;
+    padding-bottom: 18px;
+  }
+
   .hero-slide {
     width: 84vw;
-    height: 330px;
+    height: clamp(260px, 38vh, 340px);
     border-radius: 20px;
   }
 
@@ -1443,16 +1487,47 @@ textarea {
       scale(0.65);
   }
 
+  .services {
+    padding-top: 34px;
+    padding-bottom: 32px;
+  }
+
+  .services-intro {
+    margin-bottom: 16px;
+  }
+
+  .services-intro h2 {
+    font-size: clamp(2.35rem, 12vw, 3.15rem);
+  }
+
+  .service-strip {
+    gap: 12px;
+  }
+
+  .service-card {
+    min-height: 104px;
+    padding: 20px;
+  }
+
+  .service-card h3 {
+    font-size: 0.82rem;
+  }
+
+  .service-card p {
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  .packages-panel {
+    margin-top: 30px;
+  }
+
   .video-section {
     min-height: auto;
   }
 
   .video-modal {
     padding: 24px 14px;
-  }
-
-  .service-card {
-    min-height: 130px;
   }
 
   .gallery-grid {

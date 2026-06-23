@@ -3,30 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Claudia Villegas | Fotografía de Sociales</title>
   <meta
     name="description"
-    content="Fotografía de sociales, video y drone para bodas, XV años, bautizos, newborn y eventos especiales."
+    content="Fotografía de sociales, video y tomas aéreas con dron para bodas, XV años, bautizos, sesiones newborn y eventos especiales."
   />
+
+  <title>Fotografía de Sociales | Claudia Villegas</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
 
-  <link rel="stylesheet" href="styles.css?v=13" />
+  <link rel="stylesheet" href="styles.css?v=14" />
 </head>
 
 <body>
-  <header class="site-header" id="top">
-    <a class="brand site-brand" href="#inicio" aria-label="Ir al inicio">
+  <header class="site-header">
+    <a class="site-brand brand" href="#inicio" aria-label="Ir al inicio">
       <span class="site-brand-top">Fotografía de Sociales</span>
       <span class="site-brand-bottom">Claudia Villegas</span>
     </a>
 
-    <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+    >
       <span></span>
       <span></span>
       <span></span>
@@ -35,7 +41,7 @@
     <nav class="nav-menu" aria-label="Navegación principal">
       <a href="#inicio">Inicio</a>
       <a href="#servicios">Servicios</a>
-      <a href="#video">Drone & Video</a>
+      <a href="#video">Drone &amp; Video</a>
       <a href="#portafolio">Portafolio</a>
       <a href="#sobre-mi">Sobre mí</a>
       <a href="#contacto">Contacto</a>
@@ -44,42 +50,40 @@
   </header>
 
   <main>
-    <!-- HERO -->
-    <section class="hero" id="inicio" aria-label="Portada visual">
-      <div class="hero-coverflow reveal">
-        <div class="hero-stage" tabindex="0" aria-label="Carrusel principal">
-          <article class="hero-slide is-center">
-            <img src="assets/images/bodas.jpg" alt="Fotografía de boda por Claudia Villegas" />
+    <section class="hero" id="inicio" aria-label="Galería destacada">
+      <div class="hero-coverflow">
+        <div class="hero-stage" tabindex="0" aria-label="Carrusel principal de fotografías">
+          <article class="hero-slide">
+            <img src="assets/images/bodas.jpg" alt="Fotografía de boda al atardecer" />
           </article>
 
-          <article class="hero-slide is-right">
-            <img src="assets/images/xv-anos.jpg" alt="Fotografía de XV años por Claudia Villegas" />
+          <article class="hero-slide">
+            <img src="assets/images/xv-anos.jpg" alt="Fotografía de XV años con vestido lila" />
           </article>
 
-          <article class="hero-slide is-far-right">
-            <img src="assets/images/tres-anos.jpg" alt="Fotografía infantil por Claudia Villegas" />
+          <article class="hero-slide">
+            <img src="assets/images/tres-anos.jpg" alt="Fotografía de sesión de 3 años" />
           </article>
 
-          <article class="hero-slide is-far-left">
-            <img src="assets/images/bautizo.jpg" alt="Fotografía de bautizo por Claudia Villegas" />
+          <article class="hero-slide">
+            <img src="assets/images/bautizo.jpg" alt="Fotografía de bautizo" />
           </article>
 
-          <article class="hero-slide is-left">
-            <img src="assets/images/newborn.jpg" alt="Fotografía newborn por Claudia Villegas" />
+          <article class="hero-slide">
+            <img src="assets/images/newborn.jpg" alt="Fotografía newborn" />
           </article>
         </div>
       </div>
     </section>
 
-    <!-- SERVICIOS + PAQUETES -->
     <section class="services section-padding" id="servicios">
       <div class="services-intro reveal">
         <p class="eyebrow">Servicios</p>
         <h2>Tres formas de contar tu evento</h2>
       </div>
 
-      <div class="service-strip">
-        <article class="service-card reveal" tabindex="0">
+      <div class="service-strip reveal delay-1">
+        <article class="service-card accent" tabindex="0">
           <h3>Fotografía</h3>
           <p>
             Sesiones y cobertura profesional para bodas, XV años, bautizos, newborn,
@@ -87,7 +91,7 @@
           </p>
         </article>
 
-        <article class="service-card reveal delay-1" tabindex="0">
+        <article class="service-card" tabindex="0">
           <h3>Video</h3>
           <p>
             Cobertura en movimiento para conservar ambiente, emociones, detalles y
@@ -95,7 +99,7 @@
           </p>
         </article>
 
-        <article class="service-card accent reveal delay-2" tabindex="0">
+        <article class="service-card accent" tabindex="0">
           <h3>Drone</h3>
           <p>
             Tomas aéreas para mostrar locaciones, entradas, espacios y una vista
@@ -104,15 +108,14 @@
         </article>
       </div>
 
-      <div class="packages-panel" id="paquetes">
+      <section class="packages-panel" id="paquetes">
         <div class="packages-header reveal">
           <p class="eyebrow">Paquetes y adicionales</p>
           <h2>Opciones para tu evento</h2>
         </div>
 
         <div class="packages-rail-wrap reveal delay-1">
-          <div class="packages-rail" aria-label="Paquetes disponibles">
-            <!-- PAQUETE 1 -->
+          <div class="packages-rail" aria-label="Paquetes y adicionales disponibles">
             <article class="package-card">
               <div class="package-card__top">
                 <p class="package-card__label">Paquete 1</p>
@@ -159,7 +162,6 @@
               </details>
             </article>
 
-            <!-- PAQUETE 2 -->
             <article class="package-card package-card--featured">
               <div class="package-card__top">
                 <p class="package-card__label">Paquete 2</p>
@@ -206,7 +208,6 @@
               </details>
             </article>
 
-            <!-- PAQUETE 3 -->
             <article class="package-card">
               <div class="package-card__top">
                 <p class="package-card__label">Paquete 3</p>
@@ -253,7 +254,6 @@
               </details>
             </article>
 
-            <!-- ALBUM DIGITAL -->
             <article class="package-card package-card--featured">
               <div class="package-card__top">
                 <p class="package-card__label">Paquete especial</p>
@@ -287,7 +287,6 @@
               </details>
             </article>
 
-            <!-- DRON -->
             <article class="package-card">
               <div class="package-card__top">
                 <p class="package-card__label">Adicional</p>
@@ -317,7 +316,6 @@
               </details>
             </article>
 
-            <!-- YEGUA -->
             <article class="package-card">
               <div class="package-card__top">
                 <p class="package-card__label">Adicional</p>
@@ -327,8 +325,8 @@
               <h3 class="package-card__name">Renta de Yegua</h3>
 
               <div class="package-card__summary">
-                <span>Sesión 15 años</span>
                 <span>Renta de yegua</span>
+                <span>Sesión 15 años</span>
               </div>
 
               <details class="package-card__details">
@@ -346,7 +344,6 @@
               </details>
             </article>
 
-            <!-- 12 FOTOS -->
             <article class="package-card">
               <div class="package-card__top">
                 <p class="package-card__label">Adicional</p>
@@ -357,7 +354,7 @@
 
               <div class="package-card__summary">
                 <span>12 fotos</span>
-                <span>Recuerdo especial</span>
+                <span>Marco para evento</span>
               </div>
 
               <details class="package-card__details">
@@ -375,13 +372,12 @@
             </article>
           </div>
         </div>
-      </div>
+      </section>
     </section>
 
-    <!-- VIDEO -->
     <section class="video-section section-padding" id="video">
       <div class="video-kicker reveal">
-        <p class="eyebrow">Drone & Video</p>
+        <p class="eyebrow">Drone &amp; Video</p>
       </div>
 
       <div class="video-grid reveal delay-1">
@@ -389,11 +385,16 @@
           class="video-card video-trigger"
           type="button"
           data-video="assets/videos/drone-preview.mp4"
-          aria-label="Reproducir video destacado"
+          aria-label="Reproducir video destacado de drone y video"
         >
-          <video class="video-preview" autoplay muted loop playsinline preload="metadata">
-            <source src="assets/videos/drone-preview.mp4" type="video/mp4" />
-          </video>
+          <video
+            class="video-preview"
+            src="assets/videos/drone-preview.mp4"
+            muted
+            loop
+            playsinline
+            preload="metadata"
+          ></video>
         </button>
 
         <button
@@ -402,9 +403,14 @@
           data-video="assets/videos/drone-xv-anos-1.mp4"
           aria-label="Reproducir video XV años 1"
         >
-          <video class="video-preview" autoplay muted loop playsinline preload="metadata">
-            <source src="assets/videos/drone-xv-anos-1.mp4" type="video/mp4" />
-          </video>
+          <video
+            class="video-preview"
+            src="assets/videos/drone-xv-anos-1.mp4"
+            muted
+            loop
+            playsinline
+            preload="metadata"
+          ></video>
         </button>
 
         <button
@@ -413,9 +419,14 @@
           data-video="assets/videos/drone-xv-anos-2.mp4"
           aria-label="Reproducir video XV años 2"
         >
-          <video class="video-preview" autoplay muted loop playsinline preload="metadata">
-            <source src="assets/videos/drone-xv-anos-2.mp4" type="video/mp4" />
-          </video>
+          <video
+            class="video-preview"
+            src="assets/videos/drone-xv-anos-2.mp4"
+            muted
+            loop
+            playsinline
+            preload="metadata"
+          ></video>
         </button>
 
         <button
@@ -424,37 +435,54 @@
           data-video="assets/videos/drone-xv-anos-3.mp4"
           aria-label="Reproducir video XV años 3"
         >
-          <video class="video-preview" autoplay muted loop playsinline preload="metadata">
-            <source src="assets/videos/drone-xv-anos-3.mp4" type="video/mp4" />
-          </video>
+          <video
+            class="video-preview"
+            src="assets/videos/drone-xv-anos-3.mp4"
+            muted
+            loop
+            playsinline
+            preload="metadata"
+          ></video>
         </button>
       </div>
     </section>
 
-    <!-- PORTAFOLIO -->
     <section class="portfolio section-padding" id="portafolio">
       <div class="portfolio-kicker reveal">
         <p class="eyebrow">Portafolio</p>
       </div>
 
-      <div class="gallery-tabs reveal delay-1" role="tablist" aria-label="Categorías de portafolio">
-        <button class="gallery-tab active" type="button" data-category="bodas">Bodas</button>
-        <button class="gallery-tab" type="button" data-category="xv-anos">XV años</button>
-        <button class="gallery-tab" type="button" data-category="tres-anos">3 años</button>
-        <button class="gallery-tab" type="button" data-category="bautizo">Bautizo</button>
-        <button class="gallery-tab" type="button" data-category="newborn">Newborn</button>
+      <div class="gallery-tabs reveal delay-1" aria-label="Categorías del portafolio">
+        <button class="gallery-tab active" type="button" data-category="bodas">
+          Bodas
+        </button>
+
+        <button class="gallery-tab" type="button" data-category="xv-anos">
+          XV Años
+        </button>
+
+        <button class="gallery-tab" type="button" data-category="tres-anos">
+          3 Años
+        </button>
+
+        <button class="gallery-tab" type="button" data-category="bautizo">
+          Bautizo
+        </button>
+
+        <button class="gallery-tab" type="button" data-category="newborn">
+          Newborn
+        </button>
       </div>
 
-      <div class="gallery-grid reveal delay-2" id="gallery-grid" aria-live="polite"></div>
+      <div class="gallery-grid reveal delay-2" id="gallery-grid"></div>
 
-      <div class="gallery-actions reveal">
-        <button class="button gallery-more" type="button" id="gallery-load-more">
+      <div class="gallery-actions">
+        <button class="button gallery-more" id="gallery-load-more" type="button">
           Ver más fotografías
         </button>
       </div>
     </section>
 
-    <!-- SOBRE MI -->
     <section class="about section-padding" id="sobre-mi">
       <div class="about-image reveal">
         <img src="assets/images/claudia.jpg" alt="Retrato de Claudia Villegas" />
@@ -463,19 +491,20 @@
       <div class="about-copy reveal delay-1">
         <p class="eyebrow">Sobre mí</p>
         <h2>Claudia Villegas</h2>
-        <h3>Fotografía & videografía profesional</h3>
+        <h3>Fotografía &amp; videografía profesional</h3>
+
         <p>
-          Soy una fotógrafa comprometida con capturar la esencia de cada historia a través de
-          imágenes elegantes, emotivas y atemporales. Mi amplia experiencia me permite combinar
-          técnica, creatividad y una visión moderna para crear recuerdos que conservan su valor
-          con el paso del tiempo. Cada sesión es planeada y realizada con dedicación,
-          profesionalismo y atención personalizada, garantizando una experiencia única y
-          resultados excepcionales.
+          Soy una fotógrafa comprometida con capturar la esencia de cada historia
+          a través de imágenes elegantes, emotivas y atemporales. Mi amplia
+          experiencia me permite combinar técnica, creatividad y una visión moderna
+          para crear recuerdos que conservan su valor con el paso del tiempo. Cada
+          sesión es planeada y realizada con dedicación, profesionalismo y atención
+          personalizada, garantizando una experiencia única y resultados
+          excepcionales.
         </p>
       </div>
     </section>
 
-    <!-- CONTACTO -->
     <section class="booking section-padding" id="reservar">
       <span class="anchor-alias" id="contacto"></span>
 
@@ -483,13 +512,14 @@
         <div class="booking-panel reveal">
           <p class="eyebrow">Reservar</p>
           <h2>Reserva tu sesión</h2>
+
           <p>
-            Comparte los detalles de tu evento y Claudia podrá orientarte sobre disponibilidad,
-            paquetes y la cobertura ideal para tu celebración.
+            Cuéntame qué tipo de evento tienes en mente y te compartiré la
+            información necesaria para planear tu cobertura.
           </p>
 
           <div class="booking-details">
-            <a href="https://wa.me/524775811873" target="_blank" rel="noreferrer">
+            <a href="https://wa.me/524775811873" target="_blank" rel="noopener noreferrer">
               <span>WhatsApp</span>
               <strong>477 581 18 73</strong>
             </a>
@@ -499,7 +529,7 @@
               <strong>fotoestudioclaudy05@gmail.com</strong>
             </a>
 
-            <a href="https://www.instagram.com/clauvip05/" target="_blank" rel="noreferrer">
+            <a href="https://www.instagram.com/clauvip05/" target="_blank" rel="noopener noreferrer">
               <span>Instagram</span>
               <strong>@clauvip05</strong>
             </a>
@@ -526,7 +556,7 @@
               <option value="3 años">3 años</option>
               <option value="Bautizo">Bautizo</option>
               <option value="Newborn">Newborn</option>
-              <option value="Otro evento">Otro evento</option>
+              <option value="Otro">Otro</option>
             </select>
           </label>
 
@@ -535,37 +565,54 @@
             <textarea
               name="message"
               rows="5"
-              placeholder="Cuéntanos fecha, lugar y detalles importantes"
+              placeholder="Cuéntame la fecha, lugar y detalles de tu evento"
               required
             ></textarea>
           </label>
 
           <p class="form-note">
-            Al enviar, se abrirá WhatsApp con tu mensaje listo para enviarse.
+            Al enviar, se abrirá WhatsApp con tu mensaje listo para compartir.
           </p>
 
-          <button class="button primary" type="submit">Enviar por WhatsApp</button>
+          <button class="button primary" type="submit">
+            Enviar solicitud
+          </button>
         </form>
       </div>
     </section>
   </main>
 
-  <!-- IMAGE LIGHTBOX -->
   <div class="lightbox" id="gallery-lightbox" aria-hidden="true">
-    <button class="lightbox-close" type="button" aria-label="Cerrar galería">×</button>
-    <button class="lightbox-arrow lightbox-prev" type="button" aria-label="Imagen anterior">‹</button>
+    <button class="lightbox-close" type="button" aria-label="Cerrar imagen">
+      ×
+    </button>
+
+    <button
+      class="lightbox-arrow lightbox-prev"
+      type="button"
+      aria-label="Fotografía anterior"
+    >
+      ‹
+    </button>
 
     <div class="lightbox-content">
       <img id="lightbox-image" src="" alt="Vista ampliada de fotografía" />
       <p id="lightbox-caption"></p>
     </div>
 
-    <button class="lightbox-arrow lightbox-next" type="button" aria-label="Imagen siguiente">›</button>
+    <button
+      class="lightbox-arrow lightbox-next"
+      type="button"
+      aria-label="Fotografía siguiente"
+    >
+      ›
+    </button>
   </div>
 
-  <!-- VIDEO MODAL -->
   <div class="video-modal" id="video-modal" aria-hidden="true">
-    <button class="video-modal-close" type="button" aria-label="Cerrar video">×</button>
+    <button class="video-modal-close" type="button" aria-label="Cerrar video">
+      ×
+    </button>
 
     <div class="video-modal-content">
       <video id="video-modal-player" controls playsinline></video>
@@ -573,11 +620,14 @@
   </div>
 
   <footer class="site-footer">
-    <p>© <span id="year"></span> Claudia Villegas. Fotografía & videografía profesional.</p>
+    <p>
+      © <span id="year"></span> Claudia Villegas. Fotografía &amp; videografía profesional.
+    </p>
+
     <a href="#inicio">Volver arriba</a>
   </footer>
 
-  <script src="gallery-data.js?v=12"></script>
-  <script src="script.js?v=12"></script>
+  <script src="assets/gallery-data.js?v=14"></script>
+  <script src="script.js?v=14"></script>
 </body>
 </html>
