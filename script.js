@@ -1,26 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const year = document.getElementById("year");
   const header = document.querySelector(".site-header");
   const menuToggle = document.querySelector(".menu-toggle");
   const navMenu = document.querySelector(".nav-menu");
-  const navLinks = Array.from(document.querySelectorAll(".nav-menu a[href^='#'], .brand[href^='#'], .site-footer a[href^='#']"));
+  const year = document.getElementById("year");
 
   if (year) {
     year.textContent = new Date().getFullYear();
   }
 
-  const updateHeader = () => {
+  const setHeaderState = () => {
     if (!header) return;
-
-    if (window.scrollY > 10) {
-      header.classList.add("is-scrolled");
-    } else {
-      header.classList.remove("is-scrolled");
-    }
+    header.classList.toggle("is-scrolled", window.scrollY > 20);
   };
 
-  updateHeader();
-  window.addEventListener("scroll", updateHeader, { passive: true });
+  setHeaderState();
+  window.addEventListener("scroll", setHeaderState, { passive: true });
 
   if (menuToggle && navMenu) {
     menuToggle.addEventListener("click", () => {
@@ -29,229 +23,344 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  const getScrollOffset = () => {
-    if (!header) return 0;
-    return header.offsetHeight - 2;
-  };
+  document
+    .querySelectorAll(".nav-menu a[href^='#'], .brand[href^='#'], .site-footer a[href^='#']")
+    .forEach((link) => {
+      link.addEventListener("click", (event) => {
+        const rawTarget = link.getAttribute("href");
 
-  navLinks.forEach((link) => {
-    link.addEventListener("click", (event) => {
-      const rawTarget = link.getAttribute("href");
-      if (!rawTarget || !rawTarget.startsWith("#")) return;
+        if (!rawTarget || rawTarget === "#") return;
 
-      event.preventDefault();
+        const target = document.querySelector(rawTarget);
 
-      let targetId = rawTarget.slice(1);
+        if (!target) return;
 
-      if (targetId === "drone-video") {
-        targetId = "video";
-      }
+        event.preventDefault();
 
-      const target = document.getElementById(targetId);
-      if (!target) return;
-
-      const offset = getScrollOffset();
-      const top = target.getBoundingClientRect().top + window.scrollY - offset;
-
-      window.scrollTo({
-        top,
-        behavior: "smooth"
-      });
-
-      history.pushState(null, "", rawTarget);
-
-      if (navMenu && navMenu.classList.contains("open")) {
-        navMenu.classList.remove("open");
+        navMenu?.classList.remove("open");
         menuToggle?.setAttribute("aria-expanded", "false");
-      }
-    });
-  });
 
-  const revealItems = document.querySelectorAll(".reveal");
+        const headerHeight = header?.offsetHeight || 0;
+        const top =
+          rawTarget === "#inicio"
+            ? 0
+            : target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+        window.scrollTo({
+          top,
+          behavior: "smooth",
+        });
+
+        history.replaceState(null, "", rawTarget);
+      });
+    });
+
+  const revealElements = document.querySelectorAll(".reveal");
 
   if ("IntersectionObserver" in window) {
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
-      });
-    }, {
-      threshold: 0.14
-    });
-
-    revealItems.forEach((item) => revealObserver.observe(item));
-  } else {
-    revealItems.forEach((item) => item.classList.add("visible"));
-  }
-
-  const sectionLinks = Array.from(document.querySelectorAll(".nav-menu a[href^='#']"));
-  const sections = Array.from(document.querySelectorAll("main section[id]"));
-
-  if ("IntersectionObserver" in window && sections.length) {
-    const sectionObserver = new IntersectionObserver((entries) => {
-      const visibleEntries = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-
-      if (!visibleEntries.length) return;
-
-      const currentId = visibleEntries[0].target.id;
-
-      sectionLinks.forEach((link) => {
-        const href = link.getAttribute("href");
-        const isDirectMatch = href === `#${currentId}`;
-        const isContactMatch = href === "#contacto" && currentId === "reservar";
-
-        link.classList.toggle("active", isDirectMatch || isContactMatch);
-      });
-    }, {
-      rootMargin: "-45% 0px -45% 0px",
-      threshold: [0.12, 0.3, 0.55]
-    });
-
-    sections.forEach((section) => sectionObserver.observe(section));
-  }
-
-  const heroCoverflow = document.querySelector(".hero-coverflow");
-  const heroStage = document.querySelector(".hero-stage");
-  const heroSlides = Array.from(document.querySelectorAll(".hero-slide"));
-
-  if (heroCoverflow && heroStage && heroSlides.length) {
-    let activeHeroIndex = 0;
-    let heroAutoplay;
-    let pointerStartX = 0;
-    let pointerCurrentX = 0;
-    let isDragging = false;
-    let didDrag = false;
-
-    const updateHeroCoverflow = () => {
-      const total = heroSlides.length;
-
-      heroSlides.forEach((slide, index) => {
-        slide.classList.remove(
-          "is-center",
-          "is-left",
-          "is-right",
-          "is-far-left",
-          "is-far-right"
-        );
-
-        const position = (index - activeHeroIndex + total) % total;
-
-        if (position === 0) {
-          slide.classList.add("is-center");
-        } else if (position === 1) {
-          slide.classList.add("is-right");
-        } else if (position === 2) {
-          slide.classList.add("is-far-right");
-        } else if (position === total - 1) {
-          slide.classList.add("is-left");
-        } else if (position === total - 2) {
-          slide.classList.add("is-far-left");
-        }
-      });
-    };
-
-    const goToHeroSlide = (index) => {
-      const total = heroSlides.length;
-      activeHeroIndex = (index + total) % total;
-      updateHeroCoverflow();
-    };
-
-    const nextHeroSlide = () => {
-      goToHeroSlide(activeHeroIndex + 1);
-    };
-
-    const previousHeroSlide = () => {
-      goToHeroSlide(activeHeroIndex - 1);
-    };
-
-    const startHeroAutoplay = () => {
-      stopHeroAutoplay();
-      heroAutoplay = window.setInterval(nextHeroSlide, 5200);
-    };
-
-    const stopHeroAutoplay = () => {
-      if (heroAutoplay) {
-        window.clearInterval(heroAutoplay);
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.14,
       }
-    };
+    );
+
+    revealElements.forEach((element) => revealObserver.observe(element));
+  } else {
+    revealElements.forEach((element) => element.classList.add("visible"));
+  }
+
+  const heroSlides = Array.from(document.querySelectorAll(".hero-slide"));
+  const heroStage = document.querySelector(".hero-stage");
+  let activeHeroIndex = 0;
+  let heroTimer = null;
+  let heroStartX = 0;
+  let heroDeltaX = 0;
+  let heroWasDragging = false;
+
+  const heroClasses = ["is-center", "is-left", "is-right", "is-far-left", "is-far-right"];
+
+  const updateHeroCarousel = () => {
+    if (!heroSlides.length) return;
+
+    heroSlides.forEach((slide, index) => {
+      slide.classList.remove(...heroClasses);
+
+      const total = heroSlides.length;
+      const diff = (index - activeHeroIndex + total) % total;
+
+      if (diff === 0) {
+        slide.classList.add("is-center");
+      } else if (diff === 1) {
+        slide.classList.add("is-right");
+      } else if (diff === 2) {
+        slide.classList.add("is-far-right");
+      } else if (diff === total - 1) {
+        slide.classList.add("is-left");
+      } else if (diff === total - 2) {
+        slide.classList.add("is-far-left");
+      }
+    });
+  };
+
+  const moveHero = (direction) => {
+    if (!heroSlides.length) return;
+
+    activeHeroIndex =
+      (activeHeroIndex + direction + heroSlides.length) % heroSlides.length;
+
+    updateHeroCarousel();
+  };
+
+  const startHeroAutoplay = () => {
+    if (!heroSlides.length) return;
+
+    stopHeroAutoplay();
+
+    heroTimer = window.setInterval(() => {
+      moveHero(1);
+    }, 2800);
+  };
+
+  const stopHeroAutoplay = () => {
+    if (heroTimer) {
+      window.clearInterval(heroTimer);
+      heroTimer = null;
+    }
+  };
+
+  if (heroSlides.length && heroStage) {
+    updateHeroCarousel();
+    startHeroAutoplay();
+
+    heroStage.addEventListener("mouseenter", stopHeroAutoplay);
+    heroStage.addEventListener("mouseleave", startHeroAutoplay);
+
+    heroStage.addEventListener("focusin", stopHeroAutoplay);
+    heroStage.addEventListener("focusout", startHeroAutoplay);
+
+    heroStage.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        moveHero(-1);
+        startHeroAutoplay();
+      }
+
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        moveHero(1);
+        startHeroAutoplay();
+      }
+    });
 
     heroStage.addEventListener("pointerdown", (event) => {
-      isDragging = true;
-      didDrag = false;
-      pointerStartX = event.clientX;
-      pointerCurrentX = event.clientX;
+      heroStartX = event.clientX;
+      heroDeltaX = 0;
+      heroWasDragging = false;
       heroStage.classList.add("is-dragging");
       document.body.classList.add("no-select");
       stopHeroAutoplay();
     });
 
     window.addEventListener("pointermove", (event) => {
-      if (!isDragging) return;
+      if (!heroStage.classList.contains("is-dragging")) return;
 
-      pointerCurrentX = event.clientX;
+      heroDeltaX = event.clientX - heroStartX;
 
-      if (Math.abs(pointerCurrentX - pointerStartX) > 8) {
-        didDrag = true;
+      if (Math.abs(heroDeltaX) > 8) {
+        heroWasDragging = true;
       }
     });
 
     window.addEventListener("pointerup", () => {
-      if (!isDragging) return;
+      if (!heroStage.classList.contains("is-dragging")) return;
 
-      const distance = pointerCurrentX - pointerStartX;
-
-      isDragging = false;
       heroStage.classList.remove("is-dragging");
       document.body.classList.remove("no-select");
 
-      if (Math.abs(distance) > 42) {
-        if (distance < 0) {
-          nextHeroSlide();
-        } else {
-          previousHeroSlide();
-        }
+      if (Math.abs(heroDeltaX) > 44) {
+        moveHero(heroDeltaX < 0 ? 1 : -1);
       }
 
       startHeroAutoplay();
     });
 
     heroStage.addEventListener("click", (event) => {
-      if (didDrag) return;
+      if (heroWasDragging) return;
 
       const rect = heroStage.getBoundingClientRect();
-      const x = event.clientX - rect.left;
+      const clickX = event.clientX - rect.left;
 
-      if (x < rect.width * 0.34) {
-        previousHeroSlide();
-        startHeroAutoplay();
-      } else if (x > rect.width * 0.66) {
-        nextHeroSlide();
-        startHeroAutoplay();
+      if (clickX < rect.width * 0.34) {
+        moveHero(-1);
       }
+
+      if (clickX > rect.width * 0.66) {
+        moveHero(1);
+      }
+
+      startHeroAutoplay();
     });
-
-    heroStage.addEventListener("keydown", (event) => {
-      if (event.key === "ArrowRight") {
-        nextHeroSlide();
-        startHeroAutoplay();
-      }
-
-      if (event.key === "ArrowLeft") {
-        previousHeroSlide();
-        startHeroAutoplay();
-      }
-    });
-
-    heroCoverflow.addEventListener("mouseenter", stopHeroAutoplay);
-    heroCoverflow.addEventListener("mouseleave", startHeroAutoplay);
-
-    updateHeroCoverflow();
-    startHeroAutoplay();
   }
+
+  const galleryGrid = document.getElementById("gallery-grid");
+  const galleryTabs = Array.from(document.querySelectorAll(".gallery-tab"));
+  const loadMoreButton = document.getElementById("gallery-load-more");
+  const galleryImages = window.galleryImages || {};
+
+  let activeGalleryCategory = "bodas";
+  let visibleGalleryCount = 8;
+  let activeGalleryItems = [];
+
+  const galleryLabels = {
+    bodas: "Bodas",
+    "xv-anos": "XV años",
+    "tres-anos": "3 años",
+    bautizo: "Bautizo",
+    newborn: "Newborn",
+  };
+
+  const renderGallery = () => {
+    if (!galleryGrid) return;
+
+    const images = galleryImages[activeGalleryCategory] || [];
+    activeGalleryItems = images;
+
+    galleryGrid.innerHTML = "";
+
+    if (!images.length) {
+      galleryGrid.innerHTML = `
+        <p class="gallery-empty">Aún no hay fotografías disponibles en esta categoría.</p>
+      `;
+
+      if (loadMoreButton) {
+        loadMoreButton.style.display = "none";
+      }
+
+      return;
+    }
+
+    images.slice(0, visibleGalleryCount).forEach((src, index) => {
+      const button = document.createElement("button");
+      button.className = "gallery-item";
+      button.type = "button";
+      button.dataset.index = String(index);
+      button.setAttribute(
+        "aria-label",
+        `Abrir fotografía de ${galleryLabels[activeGalleryCategory] || "portafolio"}`
+      );
+
+      const image = document.createElement("img");
+      image.src = src;
+      image.alt = `Fotografía de ${galleryLabels[activeGalleryCategory] || "portafolio"}`;
+      image.loading = "lazy";
+
+      button.appendChild(image);
+      galleryGrid.appendChild(button);
+    });
+
+    if (loadMoreButton) {
+      loadMoreButton.style.display =
+        visibleGalleryCount >= images.length ? "none" : "inline-flex";
+    }
+  };
+
+  galleryTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const category = tab.dataset.category;
+
+      if (!category) return;
+
+      activeGalleryCategory = category;
+      visibleGalleryCount = 8;
+
+      galleryTabs.forEach((item) => item.classList.remove("active"));
+      tab.classList.add("active");
+
+      renderGallery();
+    });
+  });
+
+  if (loadMoreButton) {
+    loadMoreButton.addEventListener("click", () => {
+      visibleGalleryCount += 8;
+      renderGallery();
+    });
+  }
+
+  renderGallery();
+
+  const lightbox = document.getElementById("gallery-lightbox");
+  const lightboxImage = document.getElementById("lightbox-image");
+  const lightboxCaption = document.getElementById("lightbox-caption");
+  const lightboxClose = document.querySelector(".lightbox-close");
+  const lightboxPrev = document.querySelector(".lightbox-prev");
+  const lightboxNext = document.querySelector(".lightbox-next");
+
+  let lightboxIndex = 0;
+
+  const openLightbox = (index) => {
+    if (!lightbox || !lightboxImage || !activeGalleryItems.length) return;
+
+    lightboxIndex = index;
+    lightboxImage.src = activeGalleryItems[lightboxIndex];
+    lightboxImage.alt = `Fotografía de ${
+      galleryLabels[activeGalleryCategory] || "portafolio"
+    }`;
+    lightboxCaption.textContent = galleryLabels[activeGalleryCategory] || "Portafolio";
+
+    lightbox.classList.add("open");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.classList.add("lightbox-open");
+  };
+
+  const closeLightbox = () => {
+    if (!lightbox || !lightboxImage) return;
+
+    lightbox.classList.remove("open");
+    lightbox.setAttribute("aria-hidden", "true");
+    lightboxImage.src = "";
+    document.body.classList.remove("lightbox-open");
+  };
+
+  const moveLightbox = (direction) => {
+    if (!activeGalleryItems.length) return;
+
+    lightboxIndex =
+      (lightboxIndex + direction + activeGalleryItems.length) %
+      activeGalleryItems.length;
+
+    openLightbox(lightboxIndex);
+  };
+
+  if (galleryGrid) {
+    galleryGrid.addEventListener("click", (event) => {
+      const item = event.target.closest(".gallery-item");
+
+      if (!item) return;
+
+      openLightbox(Number(item.dataset.index || 0));
+    });
+  }
+
+  lightboxClose?.addEventListener("click", closeLightbox);
+  lightboxPrev?.addEventListener("click", () => moveLightbox(-1));
+  lightboxNext?.addEventListener("click", () => moveLightbox(1));
+
+  document.addEventListener("keydown", (event) => {
+    if (!lightbox?.classList.contains("open")) return;
+
+    if (event.key === "Escape") closeLightbox();
+    if (event.key === "ArrowLeft") moveLightbox(-1);
+    if (event.key === "ArrowRight") moveLightbox(1);
+  });
 
   const previewVideos = Array.from(document.querySelectorAll(".video-preview"));
   const videoTriggers = Array.from(document.querySelectorAll(".video-trigger"));
@@ -261,45 +370,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const playPreviewIfVisible = (video) => {
     const rect = video.getBoundingClientRect();
-    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+    const visible = rect.top < window.innerHeight && rect.bottom > 0;
 
-    if (isVisible) {
-      video.muted = true;
+    if (visible) {
       video.play().catch(() => {});
+    } else {
+      video.pause();
     }
   };
 
-  if ("IntersectionObserver" in window && previewVideos.length) {
-    const videoObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        const video = entry.target;
+  if ("IntersectionObserver" in window) {
+    const videoObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target;
 
-        if (entry.isIntersecting) {
-          video.muted = true;
-          video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
-      });
-    }, {
-      threshold: 0.35
-    });
+          if (entry.isIntersecting) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+      },
+      {
+        threshold: 0.35,
+      }
+    );
 
-    previewVideos.forEach((video) => {
-      video.muted = true;
-      videoObserver.observe(video);
-    });
+    previewVideos.forEach((video) => videoObserver.observe(video));
+  } else {
+    previewVideos.forEach((video) => video.play().catch(() => {}));
   }
 
-  const openVideoModal = (videoPath) => {
-    if (!videoModal || !videoModalPlayer) return;
+  const openVideoModal = (src) => {
+    if (!videoModal || !videoModalPlayer || !src) return;
 
     previewVideos.forEach((video) => video.pause());
 
-    videoModalPlayer.src = videoPath;
+    videoModalPlayer.src = src;
     videoModalPlayer.muted = false;
     videoModalPlayer.controls = true;
-
     videoModal.classList.add("open");
     videoModal.setAttribute("aria-hidden", "false");
     document.body.classList.add("lightbox-open");
@@ -318,15 +428,12 @@ document.addEventListener("DOMContentLoaded", () => {
     videoModal.setAttribute("aria-hidden", "true");
     document.body.classList.remove("lightbox-open");
 
-    previewVideos.forEach((video) => {
-      playPreviewIfVisible(video);
-    });
+    previewVideos.forEach(playPreviewIfVisible);
   };
 
   videoTriggers.forEach((trigger) => {
     trigger.addEventListener("click", () => {
-      const videoPath = trigger.dataset.video;
-      openVideoModal(videoPath);
+      openVideoModal(trigger.dataset.video);
     });
   });
 
@@ -339,173 +446,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && videoModal?.classList.contains("open")) {
+    if (!videoModal?.classList.contains("open")) return;
+
+    if (event.key === "Escape") {
       closeVideoModal();
     }
   });
-
-  const galleryImages = window.galleryImages || {};
-  const galleryGrid = document.getElementById("gallery-grid");
-  const galleryTabs = Array.from(document.querySelectorAll(".gallery-tab"));
-  const galleryMoreButton = document.getElementById("gallery-more-button");
-  const galleryActions = document.getElementById("gallery-actions");
-  const lightbox = document.getElementById("gallery-lightbox");
-  const lightboxImage = document.getElementById("lightbox-image");
-  const lightboxCaption = document.getElementById("lightbox-caption");
-  const lightboxClose = document.querySelector(".lightbox-close");
-  const lightboxPrev = document.querySelector(".lightbox-prev");
-  const lightboxNext = document.querySelector(".lightbox-next");
-
-  const galleryLabels = {
-    "bodas": "Bodas",
-    "xv-anos": "XV años",
-    "tres-anos": "3 años",
-    "bautizo": "Bautizo",
-    "newborn": "Newborn"
-  };
-
-  let activeGalleryCategory = "bodas";
-  let activeGalleryImages = [];
-  let activeGalleryIndex = 0;
-  let visibleGalleryCount = 8;
-
-  const renderGallery = (category) => {
-    if (!galleryGrid) return;
-
-    activeGalleryCategory = category;
-    activeGalleryImages = galleryImages[category] || [];
-
-    galleryTabs.forEach((tab) => {
-      tab.classList.toggle("active", tab.dataset.category === category);
-    });
-
-    galleryGrid.innerHTML = "";
-
-    if (!activeGalleryImages.length) {
-      galleryGrid.innerHTML = `<p class="gallery-empty">No hay fotografías disponibles en esta categoría todavía.</p>`;
-
-      if (galleryActions) {
-        galleryActions.style.display = "none";
-      }
-
-      return;
-    }
-
-    const visibleImages = activeGalleryImages.slice(0, visibleGalleryCount);
-
-    visibleImages.forEach((imagePath, index) => {
-      const button = document.createElement("button");
-      button.className = "gallery-item";
-      button.type = "button";
-      button.setAttribute("aria-label", `Abrir fotografía de ${galleryLabels[category]}`);
-
-      const image = document.createElement("img");
-      image.src = imagePath;
-      image.alt = `${galleryLabels[category]} - Fotografía ${index + 1}`;
-      image.loading = "lazy";
-
-      button.appendChild(image);
-
-      button.addEventListener("click", () => {
-        openLightbox(index);
-      });
-
-      galleryGrid.appendChild(button);
-    });
-
-    if (galleryActions && galleryMoreButton) {
-      if (visibleGalleryCount >= activeGalleryImages.length) {
-        galleryActions.style.display = "none";
-      } else {
-        galleryActions.style.display = "flex";
-        galleryMoreButton.textContent = `Ver más fotografías`;
-      }
-    }
-  };
-
-  const openLightbox = (index) => {
-    if (!lightbox || !lightboxImage || !activeGalleryImages.length) return;
-
-    activeGalleryIndex = index;
-    const imagePath = activeGalleryImages[activeGalleryIndex];
-
-    lightboxImage.src = imagePath;
-    lightboxImage.alt = `${galleryLabels[activeGalleryCategory]} - Fotografía ${activeGalleryIndex + 1}`;
-
-    if (lightboxCaption) {
-      lightboxCaption.textContent = `${galleryLabels[activeGalleryCategory]} · ${activeGalleryIndex + 1} / ${activeGalleryImages.length}`;
-    }
-
-    lightbox.classList.add("open");
-    lightbox.setAttribute("aria-hidden", "false");
-    document.body.classList.add("lightbox-open");
-  };
-
-  const closeLightbox = () => {
-    if (!lightbox || !lightboxImage) return;
-
-    lightbox.classList.remove("open");
-    lightbox.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("lightbox-open");
-
-    lightboxImage.src = "";
-  };
-
-  const showNextLightboxImage = () => {
-    if (!activeGalleryImages.length) return;
-
-    activeGalleryIndex = (activeGalleryIndex + 1) % activeGalleryImages.length;
-    openLightbox(activeGalleryIndex);
-  };
-
-  const showPreviousLightboxImage = () => {
-    if (!activeGalleryImages.length) return;
-
-    activeGalleryIndex = (activeGalleryIndex - 1 + activeGalleryImages.length) % activeGalleryImages.length;
-    openLightbox(activeGalleryIndex);
-  };
-
-  galleryTabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      visibleGalleryCount = 8;
-      renderGallery(tab.dataset.category);
-    });
-  });
-
-  galleryMoreButton?.addEventListener("click", () => {
-    visibleGalleryCount += 8;
-    renderGallery(activeGalleryCategory);
-  });
-
-  lightboxClose?.addEventListener("click", closeLightbox);
-  lightboxNext?.addEventListener("click", showNextLightboxImage);
-  lightboxPrev?.addEventListener("click", showPreviousLightboxImage);
-
-  lightbox?.addEventListener("click", (event) => {
-    if (event.target === lightbox) {
-      closeLightbox();
-    }
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (!lightbox?.classList.contains("open")) return;
-
-    if (event.key === "Escape") {
-      closeLightbox();
-    }
-
-    if (event.key === "ArrowRight") {
-      showNextLightboxImage();
-    }
-
-    if (event.key === "ArrowLeft") {
-      showPreviousLightboxImage();
-    }
-  });
-
-  if (galleryGrid) {
-    renderGallery(activeGalleryCategory);
-  }
 
   const whatsappForm = document.getElementById("whatsapp-form");
 
@@ -515,22 +461,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const formData = new FormData(whatsappForm);
 
-      const nombre = formData.get("nombre")?.trim();
-      const correo = formData.get("correo")?.trim();
-      const servicio = formData.get("servicio")?.trim();
-      const mensaje = formData.get("mensaje")?.trim();
+      const name = String(formData.get("name") || "").trim();
+      const email = String(formData.get("email") || "").trim();
+      const eventType = String(formData.get("event") || "").trim();
+      const message = String(formData.get("message") || "").trim();
 
-      const whatsappMessage = `Hola Claudia, me gustaría solicitar información para una sesión/cobertura.
+      const whatsappMessage = `Hola Claudia, me gustaría solicitar información para una sesión o cobertura.
 
-Nombre: ${nombre}
-Correo: ${correo}
-Tipo de evento: ${servicio}
-Mensaje: ${mensaje}`;
+Nombre: ${name}
+Correo: ${email}
+Tipo de evento: ${eventType}
 
-      const phoneNumber = "524775811873";
-      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+Mensaje:
+${message}`;
 
-      window.open(whatsappUrl, "_blank");
+      const whatsappUrl = `https://wa.me/524775811873?text=${encodeURIComponent(
+        whatsappMessage
+      )}`;
+
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
     });
   }
 });

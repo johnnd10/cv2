@@ -17,7 +17,7 @@
     rel="stylesheet"
   />
 
-  <link rel="stylesheet" href="styles.css?v=14" />
+  <link rel="stylesheet" href="styles.css?v=15" />
 </head>
 
 <body>
@@ -58,7 +58,7 @@
           </article>
 
           <article class="hero-slide">
-            <img src="assets/images/xv-anos.jpg" alt="Fotografía de XV años con vestido lila" />
+            <img src="assets/images/xv-anos.jpg" alt="Fotografía de XV años" />
           </article>
 
           <article class="hero-slide">
@@ -381,68 +381,20 @@
       </div>
 
       <div class="video-grid reveal delay-1">
-        <button
-          class="video-card video-trigger"
-          type="button"
-          data-video="assets/videos/drone-preview.mp4"
-          aria-label="Reproducir video destacado de drone y video"
-        >
-          <video
-            class="video-preview"
-            src="assets/videos/drone-preview.mp4"
-            muted
-            loop
-            playsinline
-            preload="metadata"
-          ></video>
+        <button class="video-card video-trigger" type="button" data-video="assets/videos/drone-preview.mp4" aria-label="Reproducir video destacado">
+          <video class="video-preview" src="assets/videos/drone-preview.mp4" muted loop playsinline preload="metadata"></video>
         </button>
 
-        <button
-          class="video-card video-trigger"
-          type="button"
-          data-video="assets/videos/drone-xv-anos-1.mp4"
-          aria-label="Reproducir video XV años 1"
-        >
-          <video
-            class="video-preview"
-            src="assets/videos/drone-xv-anos-1.mp4"
-            muted
-            loop
-            playsinline
-            preload="metadata"
-          ></video>
+        <button class="video-card video-trigger" type="button" data-video="assets/videos/drone-xv-anos-1.mp4" aria-label="Reproducir video XV años 1">
+          <video class="video-preview" src="assets/videos/drone-xv-anos-1.mp4" muted loop playsinline preload="metadata"></video>
         </button>
 
-        <button
-          class="video-card video-trigger"
-          type="button"
-          data-video="assets/videos/drone-xv-anos-2.mp4"
-          aria-label="Reproducir video XV años 2"
-        >
-          <video
-            class="video-preview"
-            src="assets/videos/drone-xv-anos-2.mp4"
-            muted
-            loop
-            playsinline
-            preload="metadata"
-          ></video>
+        <button class="video-card video-trigger" type="button" data-video="assets/videos/drone-xv-anos-2.mp4" aria-label="Reproducir video XV años 2">
+          <video class="video-preview" src="assets/videos/drone-xv-anos-2.mp4" muted loop playsinline preload="metadata"></video>
         </button>
 
-        <button
-          class="video-card video-trigger"
-          type="button"
-          data-video="assets/videos/drone-xv-anos-3.mp4"
-          aria-label="Reproducir video XV años 3"
-        >
-          <video
-            class="video-preview"
-            src="assets/videos/drone-xv-anos-3.mp4"
-            muted
-            loop
-            playsinline
-            preload="metadata"
-          ></video>
+        <button class="video-card video-trigger" type="button" data-video="assets/videos/drone-xv-anos-3.mp4" aria-label="Reproducir video XV años 3">
+          <video class="video-preview" src="assets/videos/drone-xv-anos-3.mp4" muted loop playsinline preload="metadata"></video>
         </button>
       </div>
     </section>
@@ -453,25 +405,11 @@
       </div>
 
       <div class="gallery-tabs reveal delay-1" aria-label="Categorías del portafolio">
-        <button class="gallery-tab active" type="button" data-category="bodas">
-          Bodas
-        </button>
-
-        <button class="gallery-tab" type="button" data-category="xv-anos">
-          XV Años
-        </button>
-
-        <button class="gallery-tab" type="button" data-category="tres-anos">
-          3 Años
-        </button>
-
-        <button class="gallery-tab" type="button" data-category="bautizo">
-          Bautizo
-        </button>
-
-        <button class="gallery-tab" type="button" data-category="newborn">
-          Newborn
-        </button>
+        <button class="gallery-tab active" type="button" data-category="bodas">Bodas</button>
+        <button class="gallery-tab" type="button" data-category="xv-anos">XV Años</button>
+        <button class="gallery-tab" type="button" data-category="tres-anos">3 Años</button>
+        <button class="gallery-tab" type="button" data-category="bautizo">Bautizo</button>
+        <button class="gallery-tab" type="button" data-category="newborn">Newborn</button>
       </div>
 
       <div class="gallery-grid reveal delay-2" id="gallery-grid"></div>
@@ -562,12 +500,7 @@
 
           <label>
             Mensaje
-            <textarea
-              name="message"
-              rows="5"
-              placeholder="Cuéntame la fecha, lugar y detalles de tu evento"
-              required
-            ></textarea>
+            <textarea name="message" rows="5" placeholder="Cuéntame la fecha, lugar y detalles de tu evento" required></textarea>
           </label>
 
           <p class="form-note">
@@ -583,36 +516,20 @@
   </main>
 
   <div class="lightbox" id="gallery-lightbox" aria-hidden="true">
-    <button class="lightbox-close" type="button" aria-label="Cerrar imagen">
-      ×
-    </button>
+    <button class="lightbox-close" type="button" aria-label="Cerrar imagen">×</button>
 
-    <button
-      class="lightbox-arrow lightbox-prev"
-      type="button"
-      aria-label="Fotografía anterior"
-    >
-      ‹
-    </button>
+    <button class="lightbox-arrow lightbox-prev" type="button" aria-label="Fotografía anterior">‹</button>
 
     <div class="lightbox-content">
       <img id="lightbox-image" src="" alt="Vista ampliada de fotografía" />
       <p id="lightbox-caption"></p>
     </div>
 
-    <button
-      class="lightbox-arrow lightbox-next"
-      type="button"
-      aria-label="Fotografía siguiente"
-    >
-      ›
-    </button>
+    <button class="lightbox-arrow lightbox-next" type="button" aria-label="Fotografía siguiente">›</button>
   </div>
 
   <div class="video-modal" id="video-modal" aria-hidden="true">
-    <button class="video-modal-close" type="button" aria-label="Cerrar video">
-      ×
-    </button>
+    <button class="video-modal-close" type="button" aria-label="Cerrar video">×</button>
 
     <div class="video-modal-content">
       <video id="video-modal-player" controls playsinline></video>
@@ -627,7 +544,7 @@
     <a href="#inicio">Volver arriba</a>
   </footer>
 
-  <script src="assets/gallery-data.js?v=14"></script>
-  <script src="script.js?v=14"></script>
+  <script src="gallery-data.js?v=15"></script>
+  <script src="script.js?v=15"></script>
 </body>
 </html>
